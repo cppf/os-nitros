@@ -8,8 +8,7 @@ typedef	struct _Task##sz	\
 {	\
 	void*	Addr;	\
 	uint	Data;	\
-	uint	Line;	\
-	int16*	Sync;	\
+	uword*	Sync;	\
 	uword	State;	\
 	byte	Store[sz];	\
 }Task##sz
@@ -20,7 +19,6 @@ typedef struct _task_Header
 {
 	void*	Addr;
 	uint	Data;
-	uint	Line;
 	int16*	Sync;
 	uword	State;
 }task_Header;
@@ -52,6 +50,7 @@ typedef task_Default	Task;
 #define task_BagType	Bag16
 #endif
 
+Task*	task_Current;
 task_QueueType	task_Ready;
 task_BagType	task_Blocked;
 
@@ -59,10 +58,8 @@ task_BagType	task_Blocked;
 // Status
 #define task_unstarted			0x00
 #define	task_completed			0xF0
-#define task_sem_blocked		0x70
-#define task_mutex_blocked		0x71
-#define task_sem_released		0x60
-#define task_mutex_released		0x61
+#define task_blocked			0x70
+#define task_released			0x60
 #define	task_yielded			0x50
 #define	task_waiting			0x40
 
@@ -72,7 +69,6 @@ task_BagType	task_Blocked;
 macro_Begin	\
 (tsk)->Addr = addr;	\
 (tsk)->Data = data;	\
-(tsk)->Line = 0;	\
 (tsk)->Sync = 0;	\
 (tsk)->State = task_unstarted;	\
 macro_End
@@ -95,174 +91,170 @@ macro_End
 
 // Define a task function
 #define	task_Fn(name)	\
-	void name(Task* task_Obj)
-
-
-// Begin a thread function
-#define	task_Begin	\
-	switch(task_Obj->Line)	\
-	{	\
-		case 0:
-
-
-// End a thread function
-#define	task_End	\
-		}	\
-	task_Obj->Line = 0;	\
-	return task_completed;
+void name(void);	\
+void name(void)
 
 
 // Save thread state to a buffer
-#define	task_SaveState1(typ1, var1)	\
-(*((typ1*)(task_Obj->Store)) = var1)
+#define	task_SaveState1(var1)	\
+(*((__typeof__(var1)*)(task_Current->Store)) = var1)
 
-#define	task_SaveState2(typ1, var1, typ2, var2)	\
+#define	task_SaveState2(var1, var2)	\
 macro_Begin	\
-*((typ1*)(task_Obj->Store)) = var1;	\
-*((typ2*)((task_Obj->Store) + sizeof(typ1))) = var2;	\
+*((__typeof__(var1)*)(task_Current->Store)) = var1;	\
+*((__typeof__(var2)*)((task_Current->Store) + sizeof(var1))) = var2;	\
 macro_End
 
-#define	task_SaveState3(typ1, var1, typ2, var2, typ3, var3)	\
+#define	task_SaveState3(var1, var2, var3)	\
 macro_Begin	\
-*((typ1*)(task_Obj->Store)) = var1;	\
-*((typ2*)((task_Obj->Store) + sizeof(typ1))) = var2;	\
-*((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2))) = var3;	\
+*((__typeof__(var1)*)(task_Current->Store)) = var1;	\
+*((__typeof__(var2)*)((task_Current->Store) + sizeof(var1))) = var2;	\
+*((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2))) = var3;	\
 macro_End
 
-#define	task_SaveState4(typ1, var1, typ2, var2, typ3, var3, typ4, var4)	\
+#define	task_SaveState4(var1, var2, var3, var4)	\
 macro_Begin	\
-*((typ1*)(task_Obj->Store)) = var1;	\
-*((typ2*)((task_Obj->Store) + sizeof(typ1))) = var2;	\
-*((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2))) = var3;	\
-*((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3))) = var4;	\
+*((__typeof__(var1)*)(task_Current->Store)) = var1;	\
+*((__typeof__(var2)*)((task_Current->Store) + sizeof(var1))) = var2;	\
+*((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2))) = var3;	\
+*((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3))) = var4;	\
 macro_End
 
-#define	task_SaveState5(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5)	\
+#define	task_SaveState5(var1, var2, var3, var4, var5)	\
 macro_Begin	\
-*((typ1*)(task_Obj->Store)) = var1;	\
-*((typ2*)((task_Obj->Store) + sizeof(typ1))) = var2;	\
-*((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2))) = var3;	\
-*((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3))) = var4;	\
-*((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4))) = var5;	\
+*((__typeof__(var1)*)(task_Current->Store)) = var1;	\
+*((__typeof__(var2)*)((task_Current->Store) + sizeof(var1))) = var2;	\
+*((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2))) = var3;	\
+*((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3))) = var4;	\
+*((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4))) = var5;	\
 macro_End
 
-#define	task_SaveState6(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5, typ6, var6)	\
+#define	task_SaveState6(var1, var2, var3, var4, var5, var6)	\
 macro_Begin	\
-*((typ1*)(task_Obj->Store)) = var1;	\
-*((typ2*)((task_Obj->Store) + sizeof(typ1))) = var2;	\
-*((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2))) = var3;	\
-*((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3))) = var4;	\
-*((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4))) = var5;	\
-*((typ6*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5))) = var6;	\
+*((__typeof__(var1)*)(task_Current->Store)) = var1;	\
+*((__typeof__(var2)*)((task_Current->Store) + sizeof(var1))) = var2;	\
+*((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2))) = var3;	\
+*((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3))) = var4;	\
+*((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4))) = var5;	\
+*((__typeof__(var6)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5))) = var6;	\
 macro_End
 
-#define	task_SaveState7(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5, typ6, var6, typ7, var7)	\
+#define	task_SaveState7(var1, var2, var3, var4, var5, var6, var7)	\
 macro_Begin	\
-*((typ1*)(task_Obj->Store)) = var1;	\
-*((typ2*)((task_Obj->Store) + sizeof(typ1))) = var2;	\
-*((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2))) = var3;	\
-*((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3))) = var4;	\
-*((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4))) = var5;	\
-*((typ6*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5))) = var6;	\
-*((typ7*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5) + sizeof(typ6))) = var7;	\
+*((__typeof__(var1)*)(task_Current->Store)) = var1;	\
+*((__typeof__(var2)*)((task_Current->Store) + sizeof(var1))) = var2;	\
+*((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2))) = var3;	\
+*((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3))) = var4;	\
+*((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4))) = var5;	\
+*((__typeof__(var6)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5))) = var6;	\
+*((__typeof__(var7)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5) + sizeof(var6))) = var7;	\
 macro_End
 
-#define	task_SaveState8(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5, typ6, var6, typ7, var7, typ8, var8)	\
+#define	task_SaveState8(var1, var2, var3, var4, var5, var6, var7, var8)	\
 macro_Begin	\
-*((typ1*)(task_Obj->Store)) = var1;	\
-*((typ2*)((task_Obj->Store) + sizeof(typ1))) = var2;	\
-*((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2))) = var3;	\
-*((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3))) = var4;	\
-*((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4))) = var5;	\
-*((typ6*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5))) = var6;	\
-*((typ7*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5) + sizeof(typ6))) = var7;	\
-*((typ8*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5) + sizeof(typ6) + sizeof(typ7))) = var8;	\
+*((__typeof__(var1)*)(task_Current->Store)) = var1;	\
+*((__typeof__(var2)*)((task_Current->Store) + sizeof(var1))) = var2;	\
+*((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2))) = var3;	\
+*((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3))) = var4;	\
+*((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4))) = var5;	\
+*((__typeof__(var6)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5))) = var6;	\
+*((__typeof__(var7)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5) + sizeof(var6))) = var7;	\
+*((__typeof__(var8)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5) + sizeof(var6) + sizeof(var7))) = var8;	\
 macro_End
 
 #define	task_SaveState(...)	\
-macro_Fn(macro_Fn17(_0, __VA_ARGS__, task_SaveState8, _15, task_SaveState7, _13, task_SaveState6, _11, task_SaveState5, _9, task_SaveState4, _7, task_SaveState3, _5, task_SaveState2, _3, task_SaveState1, macro_FnE, macro_FnE)(__VA_ARGS__))
-
-#define	task_Save	task_SaveState
+macro_Fn(macro_Fn9(_0, __VA_ARGS__, task_SaveState8, task_SaveState7, task_SaveState6, task_SaveState5, task_SaveState4, task_SaveState3, task_SaveState2, task_SaveState1, macro_FnE, macro_FnE)(__VA_ARGS__))
 
 
 // Load thread state from a buffer
-#define	task_LoadState1(typ1, var1)	\
-(var1 = *((typ1*)(task_Obj->Store)))
+#define	task_LoadState1(var1)	\
+(var1 = *((__typeof__(var1)*)(task_Current->Store)))
 
-#define	task_LoadState2(typ1, var1, typ2, var2)	\
+#define	task_LoadState2(var1, var2)	\
 macro_Begin	\
-var1 = *((typ1*)(task_Obj->Store));	\
-var2 = *((typ2*)((task_Obj->Store) + sizeof(typ1)));	\
+var1 = *((__typeof__(var1)*)(task_Current->Store));	\
+var2 = *((__typeof__(var2)*)((task_Current->Store) + sizeof(var1)));	\
 macro_End
 
-#define	task_LoadState3(typ1, var1, typ2, var2, typ3, var3)	\
+#define	task_LoadState3(var1, var2, var3)	\
 macro_Begin	\
-var1 = *((typ1*)(task_Obj->Store));	\
-var2 = *((typ2*)((task_Obj->Store) + sizeof(typ1)));	\
-var3 = *((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2)));	\
+var1 = *((__typeof__(var1)*)(task_Current->Store));	\
+var2 = *((__typeof__(var2)*)((task_Current->Store) + sizeof(var1)));	\
+var3 = *((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2)));	\
 macro_End
 
-#define	task_LoadState4(typ1, var1, typ2, var2, typ3, var3, typ4, var4)	\
+#define	task_LoadState4(var1, var2, var3, var4)	\
 macro_Begin	\
-var1 = *((typ1*)(task_Obj->Store));	\
-var2 = *((typ2*)((task_Obj->Store) + sizeof(typ1)));	\
-var3 = *((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2)));	\
-var4 = *((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3)));	\
+var1 = *((__typeof__(var1)*)(task_Current->Store));	\
+var2 = *((__typeof__(var2)*)((task_Current->Store) + sizeof(var1)));	\
+var3 = *((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2)));	\
+var4 = *((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3)));	\
 macro_End
 
-#define	task_LoadState5(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5)	\
+#define	task_LoadState5(var1, var2, var3, var4, var5)	\
 macro_Begin	\
-var1 = *((typ1*)(task_Obj->Store));	\
-var2 = *((typ2*)((task_Obj->Store) + sizeof(typ1)));	\
-var3 = *((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2)));	\
-var4 = *((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3)));	\
-var5 = *((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4)));	\
+var1 = *((__typeof__(var1)*)(task_Current->Store));	\
+var2 = *((__typeof__(var2)*)((task_Current->Store) + sizeof(var1)));	\
+var3 = *((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2)));	\
+var4 = *((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3)));	\
+var5 = *((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4)));	\
 macro_End
 
-#define	task_LoadState6(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5, typ6, var6)	\
+#define	task_LoadState6(var1, var2, var3, var4, var5, var6)	\
 macro_Begin	\
-var1 = *((typ1*)(task_Obj->Store));	\
-var2 = *((typ2*)((task_Obj->Store) + sizeof(typ1)));	\
-var3 = *((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2)));	\
-var4 = *((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3)));	\
-var5 = *((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4)));	\
-var6 = *((typ6*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5)));	\
+var1 = *((__typeof__(var1)*)(task_Current->Store));	\
+var2 = *((__typeof__(var2)*)((task_Current->Store) + sizeof(var1)));	\
+var3 = *((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2)));	\
+var4 = *((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3)));	\
+var5 = *((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4)));	\
+var6 = *((__typeof__(var6)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5)));	\
 macro_End
 
-#define	task_LoadState7(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5, typ6, var6, typ7, var7)	\
+#define	task_LoadState7(var1, var2, var3, var4, var5, var6, var7)	\
 macro_Begin	\
-var1 = *((typ1*)(task_Obj->Store));	\
-var2 = *((typ2*)((task_Obj->Store) + sizeof(typ1)));	\
-var3 = *((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2)));	\
-var4 = *((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3)));	\
-var5 = *((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4)));	\
-var6 = *((typ6*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5)));	\
-var7 = *((typ7*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5) + sizeof(typ6)));	\
+var1 = *((__typeof__(var1)*)(task_Current->Store));	\
+var2 = *((__typeof__(var2)*)((task_Current->Store) + sizeof(var1)));	\
+var3 = *((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2)));	\
+var4 = *((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3)));	\
+var5 = *((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4)));	\
+var6 = *((__typeof__(var6)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5)));	\
+var7 = *((__typeof__(var7)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5) + sizeof(var6)));	\
 macro_End
 
-#define	task_LoadState8(typ1, var1, typ2, var2, typ3, var3, typ4, var4, typ5, var5, typ6, var6, typ7, var7, typ8, var8)	\
+#define	task_LoadState8(var1, var2, var3, var4, var5, var6, var7, var8)	\
 macro_Begin	\
-var1 = *((typ1*)(task_Obj->Store));	\
-var2 = *((typ2*)((task_Obj->Store) + sizeof(typ1)));	\
-var3 = *((typ3*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2)));	\
-var4 = *((typ4*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3)));	\
-var5 = *((typ5*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4)));	\
-var6 = *((typ6*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5)));	\
-var7 = *((typ7*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5) + sizeof(typ6)));	\
-var8 = *((typ8*)((task_Obj->Store) + sizeof(typ1) + sizeof(typ2) + sizeof(typ3) + sizeof(typ4) + sizeof(typ5) + sizeof(typ6) + sizeof(typ7)));	\
+var1 = *((__typeof__(var1)*)(task_Current->Store));	\
+var2 = *((__typeof__(var2)*)((task_Current->Store) + sizeof(var1)));	\
+var3 = *((__typeof__(var3)*)((task_Current->Store) + sizeof(var1) + sizeof(var2)));	\
+var4 = *((__typeof__(var4)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3)));	\
+var5 = *((__typeof__(var5)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4)));	\
+var6 = *((__typeof__(var6)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5)));	\
+var7 = *((__typeof__(var7)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5) + sizeof(var6)));	\
+var8 = *((__typeof__(var8)*)((task_Current->Store) + sizeof(var1) + sizeof(var2) + sizeof(var3) + sizeof(var4) + sizeof(var5) + sizeof(var6) + sizeof(var7)));	\
 macro_End
 
 #define	task_LoadState(...)	\
-macro_Fn(macro_Fn17(_0, __VA_ARGS__, task_LoadState8, _15, task_LoadState7, _13, task_LoadState6, _11, task_LoadState5, _9, task_LoadState4, _7, task_LoadState3, _5, task_LoadState2, _3, task_LoadState1, macro_FnE, macro_FnE)(__VA_ARGS__))
-
-#define	task_Load	task_LoadState
+macro_Fn(macro_Fn9(_0, __VA_ARGS__, task_LoadState8, task_LoadState7, task_LoadState6, task_LoadState5, task_LoadState4, task_LoadState3, task_LoadState2, task_LoadState1, macro_FnE, macro_FnE)(__VA_ARGS__))
 
 
-// Yields out of a thread
+// Mark checkpoint in a task
+// A task resumes from the last checkpoint
+#define task_MarkCheckpoint(name, ...)	\
+macro_Begin	\
+task_Current->Addr = &&name;	\
+task_SaveState(__VA_ARGS__);	\
+name:	\
+task_LoadState(__VA_ARGS__);	\
+macro_End
+
+
+// Yields out of a task
 #define	task_Yield(...)	\
 macro_Begin	\
-task_Obj->Line = __LINE__;	\
+task_Current->Addr = &&task_Label##__LINE__;	\
 task_SaveState(__VA_ARGS__);	\
+task_Current->State = task_yielded;
+
 return task_yielded;	\
 case __LINE__:	\
 task_LoadState(__VA_ARGS__);	\
@@ -296,8 +288,8 @@ macro_Begin	\
 *(semptr)--;	\
 if(*(semptr) < 0)	\
 {	\
-task_Obj->Sync = (semptr);	\
-task_Obj->Line = __LINE__;	\
+task_Current->Sync = (semptr);	\
+task_Current->Line = __LINE__;	\
 task_SaveState(__VA_ARGS__);	\
 return task_sem_blocked;	\
 case __LINE__:	\
@@ -315,8 +307,8 @@ macro_Begin	\
 *(semptr)++;	\
 if(*(semptr) <= 0)	\
 {	\
-	task_Obj->Sync = (semptr);	\
-	task_Obj->Line = __LINE__;	\
+	task_Current->Sync = (semptr);	\
+	task_Current->Line = __LINE__;	\
 	task_SaveState(__VA_ARGS__);	\
 	return task_sem_released;	\
 	case __LINE__:	\
@@ -333,14 +325,14 @@ task_SemSignal
 macro_Begin	\
 if(*(mutexptr) != null)	\
 {	\
-	task_Obj->Sync = (mutexptr);	\
-	task_Obj->Line = __LINE__;	\
+	task_Current->Sync = (mutexptr);	\
+	task_Current->Line = __LINE__;	\
 	task_SaveState(__VA_ARGS__);	\
 	return task_mutex_blocked;	\
 	case __LINE__:	\
 	task_LoadState(__VA_ARGS__);	\
 }	\
-*(mutexptr) = (Mutex) task_Obj;	\
+*(mutexptr) = (Mutex) task_Current;	\
 macro_End
 
 #define task_MutexTake	\
@@ -353,10 +345,10 @@ task_MutexWait
 // Signal Mutex
 #define	task_MutexSignal(mutexptr, ...)	\
 macro_Begin	\
-if(*(mutexptr) == (Mutex) task_Obj)	\
+if(*(mutexptr) == (Mutex) task_Current)	\
 {	\
-	task_Obj->Sync = (mutexptr);	\
-	task_Obj->Line = __LINE__;	\
+	task_Current->Sync = (mutexptr);	\
+	task_Current->Line = __LINE__;	\
 	task_SaveState(__VA_ARGS__);	\
 	return task_mutex_released;	\
 	case __LINE__:	\
@@ -369,6 +361,16 @@ task_MutexSignal
 
 #define task_MutexUnlock	\
 task_MutexSignal
+
+
+
+// Marks a task as completed
+// Hence, the task exits permanently
+#define	task_Complete()	\
+macro_Begin	\
+task_Current->State = task_completed;	\
+return;
+
 
 
 #endif /* _CORE_TASK_H_ */
