@@ -8,16 +8,16 @@
 inline byte mem_ReadBit(void* src, uint off, uint bit_no);
 inline byte mem_ReadBit(void* src, uint off, uint bit_no)
 {
-	byte* addr = (byte*)src + off + (bit_no >> (uword)3);
-	return (*addr >> (bit_no & (uword)7)) & (uword)1;
+	byte* addr = (byte*)src + off + (bit_no >> 3);
+	return (*addr >> (bit_no & 7)) & 1;
 }
 
 inline byte mem_ReadNibble(void* src, uint off, uint nibl_no);
 inline byte mem_ReadNibble(void* src, uint off, uint nibl_no)
 {
-	byte* addr = (byte*)src + off + (nibl_no >> (uword)1);
-	byte val = (nibl_no & (uword)1)? *addr >> (uword)4 : *addr;
-	return val & (uword)0xFF;
+	byte* addr = (byte*)src + off + (nibl_no >> 1);
+	byte val = (nibl_no & 1)? *addr >> 4 : *addr;
+	return val & 0xFF;
 }
 
 #define	mem_ReadType(type, src, off)	\

@@ -73,11 +73,12 @@ bag_GetFree(bg)
 uword bag_IndexOfF(Bag* bg, uint elem);
 uword bag_IndexOfF(Bag* bg, uint elem)
 {
-	uword indx;
-	for(indx = 0; indx < bg->Count; indx++)
-	if(bg->Value[indx] == elem) break;
-	indx = (indx != bg->Count)? indx : (uword)-1;
-	return indx;
+	for(uword indx = 0; indx < bg->Count; indx++)
+	{
+		if(bg->Value[indx] == elem)
+		return indx;
+	}
+	return -1;
 }
 
 #define	bag_IndexOf(bg, elem)	\
