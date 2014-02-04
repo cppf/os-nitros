@@ -197,13 +197,7 @@
     <Compile Include="Os\Core\Kernel.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Os\Core\Mutex.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Os\Core\Sem.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Os\Core\Task.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Os\Data\Bag.h">
@@ -263,6 +257,9 @@
     <Compile Include="src\ASF\mega\boards\stk600\rcx_x\init.c">
       <SubType>compile</SubType>
     </Compile>
+    <None Include="Os\Core\Task.h">
+      <SubType>compile</SubType>
+    </None>
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>

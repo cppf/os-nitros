@@ -2,16 +2,8 @@
 #define _CORE_SEM_H_
 
 
-// Semaphore type
-#define sem_type	0
-
-
 // Define
-typedef struct _Sem
-{
-	uword	Type;
-	word	Sync;
-}Sem;
+typedef word Sem;
 
 
 // Initialize

@@ -47,7 +47,6 @@
 #include "Data/List.h"
 #include "Data/Queue.h"
 #include "Core/Sem.h"
-#include "Core/Mutex.h"
 #include "Core/Task.h"
 // #include "Core/Kernel.h"
 
