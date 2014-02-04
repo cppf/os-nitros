@@ -2,13 +2,29 @@
 #define _CORE_MUTEX_H_
 
 
+// Mutex type
+#define mutex_type	1
+
+
 // Define
-typedef int16 Mutex;
+typedef struct _Mutex
+{
+	uword	Type;
+	void*	Sync;
+}Mutex;
+
+
+// Initialize
+#define mutex_Init(mtx)	\
+macro_Begin	\
+(mtx)->Type = mutex_type;	\
+(mtx)->Sync = null;	\
+macro_End
 
 
 // Raw Wait (do not use directly)
-#define mutex_Wait(mutex, fn)	\
-(mutex = (Mutex)(fn))
+#define mutex_Wait(mtx, addr)	\
+((mtx)->Sync = (Mutex)(addr))
 
 #define mutex_Take	\
 mutex_Wait
@@ -18,8 +34,8 @@ mutex_Wait
 
 
 // Signal (Raw)
-#define mutex_Signal(mutex)	\
-(mutex = 0)
+#define mutex_Signal(mtx)	\
+((mtx)->Sync = 0)
 
 #define mutex_Give	\
 mutex_Signal
@@ -29,16 +45,16 @@ mutex_Signal
 
 
 // Check if free to use (Raw)
-#define mutex_IsFree(mutex)	\
-(mutex != 0)
+#define mutex_IsFree(mtx)	\
+((mtx)->Sync != 0)
 
 #define mutex_IsUnlocked	\
 mutex_IsFree
 
 
 // Check if can signal (Raw)
-#define mutex_CanSignal(mutex, fn)	\
-(mutex == (Mutex)(fn))
+#define mutex_CanSignal(mtx, addr)	\
+((mtx)->Sync == (Mutex)(addr))
 
 #define mutex_CanGive	\
 mutex_CanSignal

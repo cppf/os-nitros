@@ -49,9 +49,7 @@
 #include "Core/Sem.h"
 #include "Core/Mutex.h"
 #include "Core/Task.h"
-#include "Core/Thread.h"
-#include "Core/Kernel.h"
-#include "Core/Context.h"
+// #include "Core/Kernel.h"
 
 
 #endif /* _RTOS_H_ */
