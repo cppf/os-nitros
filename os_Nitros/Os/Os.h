@@ -48,7 +48,7 @@
 #include "Data/Queue.h"
 #include "Core/Sem.h"
 #include "Core/Task.h"
-// #include "Core/Kernel.h"
+#include "Core/Kernel.h"
 
 
 #endif /* _RTOS_H_ */

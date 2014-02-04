@@ -6,8 +6,8 @@ int main (void)
 {
 	int a = 10;
 	board_init();
-	void* b = &&label;
-	label:;
+//	void* b = &&label;
+//	label:;
 	*((int*)buff) = a;
 }
 

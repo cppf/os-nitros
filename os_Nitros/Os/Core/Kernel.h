@@ -2,33 +2,29 @@
 #define _TASK_KERNEL_H_
 
 
+// Begin a critical section
 #define critSec_Begin()	\
-	cli()
+cli()
 
+
+// End a critical section
 #define critSec_End()	\
-	sei()
+sei()
+
 
 
 void core_Scheduler(void);
 void core_Scheduler(void)
 {
-	task_FnPtr fn;
-	uint data;
 	while(true)
 	{
-		if(queue_HasAvail(&task_Queue))
+		if(queue_HasAvail(&task_Ready))
 		{
-			fn = (task_FnPtr) queue_Remove(&task_Queue);
-			data = (uint) queue_Remove(&task_Queue);
-			fn(data);
-			continue;
+			task_Current = (Task*) queue_Remove(&task_Ready);
+			((task_FnPtr) task_Current->Addr)();
+			if(task_Current->State == task_blocked) bag_Add(&task_Blocked, task_Current);
+			else queue_Add(&task_Ready, task_Current);
 		}
-		if(queue_HasAvail(&thread_ReadyQueue))
-		{
-			
-			continue;
-		}
-		
 	}
 }
 

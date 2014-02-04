@@ -11,17 +11,23 @@ typedef word Sem;
 (*(sem) = (start))
 
 
-// Raw Wait (do not use directly)
+// Wait
 #define sem_Wait(sem)	\
-(*(sem)--)
+macro_Begin	\
+*(sem)--;	\
+if(*(sem) < 0) task_SemBlock(sem);	\
+macro_End
 
 #define sem_Take	\
 sem_Wait
 
 
-// Signal (Raw)
+// Signal
 #define sem_Signal(sem)	\
-(*(sem)++)
+macro_Begin	\
+*(sem)++;	\
+if(*(sem) <= 0) task_SemRelease(sem);	\
+macro_End
 
 #define sem_Give	\
 sem_Signal

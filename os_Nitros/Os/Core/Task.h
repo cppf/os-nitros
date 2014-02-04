@@ -8,7 +8,7 @@ typedef	struct _Task##sz	\
 {	\
 	void*	Addr;	\
 	uint	Data;	\
-	uword*	Sync;	\
+	Sem*	Block;	\
 	uword	State;	\
 	byte	Store[sz];	\
 }Task##sz
@@ -19,11 +19,13 @@ typedef struct _task_Header
 {
 	void*	Addr;
 	uint	Data;
-	int16*	Sync;
+	Sem*	Block;
 	uword	State;
 }task_Header;
 
 typedef task_Header Task0;
+
+typedef void (*task_FnPtr)(void);
 
 
 // Default
@@ -69,7 +71,7 @@ task_BagType	task_Blocked;
 macro_Begin	\
 (tsk)->Addr = addr;	\
 (tsk)->Data = data;	\
-(tsk)->Sync = 0;	\
+(tsk)->Block = null;	\
 (tsk)->State = task_unstarted;	\
 macro_End
 
@@ -239,36 +241,35 @@ macro_Fn(macro_Fn9(_0, __VA_ARGS__, task_LoadState8, task_LoadState7, task_LoadS
 
 // Mark checkpoint in a task
 // A task resumes from the last checkpoint
-#define task_MarkCheckpoint(name, ...)	\
+#define task_Checkpoint(name, ...)	\
 macro_Begin	\
 task_Current->Addr = &&name;	\
 task_SaveState(__VA_ARGS__);	\
+goto name##_skip_load;	\
 name:	\
 task_LoadState(__VA_ARGS__);	\
+name##_skip_load:	\
 macro_End
 
 
 // Yields out of a task
 #define	task_Yield(...)	\
 macro_Begin	\
-task_Current->Addr = &&task_Label##__LINE__;	\
-task_SaveState(__VA_ARGS__);	\
-task_Current->State = task_yielded;
-
-return task_yielded;	\
-case __LINE__:	\
-task_LoadState(__VA_ARGS__);	\
+task_Checkpoint(task_label##__LINE__, __VA_ARGS__);	\
+task_Current->State = task_yielded;	\
+return;	\
 macro_End
 
 
 // Wait while a condition is satisfied (active wait)
 #define	task_WaitWhile(wait_cond, ...)	\
 macro_Begin	\
-task_line = __LINE__;	\
-task_SaveState(__VA_ARGS__);	\
-case __LINE__:	\
-if(wait_cond) return task_waiting;	\
-task_LoadState(__VA_ARGS__);	\
+task_Checkpoint(task_label##__LINE__, __VA_ARGS__);	\
+if(wait_cond)	\
+{	\
+	task_Current->State = task_waiting;	\
+	return;	\
+}	\
 macro_End
 
 
@@ -278,23 +279,30 @@ task_WaitWhile(!(wait_cond), __VA_ARGS__)
 
 
 // Exit out of a thread
-#define	task_Exit()	\
-return task_exited
+#define	task_Complete()	\
+macro_Begin	\
+task_Current->State = task_completed;	\
+return;	\
+macro_End
+
+#define task_Exit	\
+task_Complete
+
+#define task_End	\
+task_Complete
+
+
+// Yield if blocked
+#define task_YieldIfBlocked()	\
+if(task_Current->State == task_blocked) return
 
 
 // Wait on semaphore
-#define	task_SemWait(semptr, ...)	\
+#define	task_SemWait(sem, ...)	\
 macro_Begin	\
-*(semptr)--;	\
-if(*(semptr) < 0)	\
-{	\
-task_Current->Sync = (semptr);	\
-task_Current->Line = __LINE__;	\
-task_SaveState(__VA_ARGS__);	\
-return task_sem_blocked;	\
-case __LINE__:	\
-task_LoadState(__VA_ARGS__);	\
-}	\
+task_Checkpoint(task_label##__LINE__, __VA_ARGS__);	\
+sem_Wait(sem);	\
+task_YieldIfBlocked();	\
 macro_End
 
 #define task_SemTake	\
@@ -303,74 +311,56 @@ task_SemWait
 
 // Signal semaphore
 #define	task_SemSignal(semptr, ...)	\
-macro_Begin	\
-*(semptr)++;	\
-if(*(semptr) <= 0)	\
-{	\
-	task_Current->Sync = (semptr);	\
-	task_Current->Line = __LINE__;	\
-	task_SaveState(__VA_ARGS__);	\
-	return task_sem_released;	\
-	case __LINE__:	\
-	task_LoadState(__VA_ARGS__);	\
-}	\
-macro_End
+sem_Signal(sem)
 
 #define task_SemGive	\
 task_SemSignal
 
 
-// Wait on Mutex
-#define	task_MutexWait(mutexptr, ...)	\
-macro_Begin	\
-if(*(mutexptr) != null)	\
-{	\
-	task_Current->Sync = (mutexptr);	\
-	task_Current->Line = __LINE__;	\
-	task_SaveState(__VA_ARGS__);	\
-	return task_mutex_blocked;	\
-	case __LINE__:	\
-	task_LoadState(__VA_ARGS__);	\
-}	\
-*(mutexptr) = (Mutex) task_Current;	\
-macro_End
-
-#define task_MutexTake	\
-task_MutexWait
-
-#define task_MutexLock	\
-task_MutexWait
+// Begin a blocking call
+#define task_BeginBlockingCall(...)	\
+task_Checkpoint(task_label##__LINE__, __VA_ARGS__)
 
 
-// Signal Mutex
-#define	task_MutexSignal(mutexptr, ...)	\
-macro_Begin	\
-if(*(mutexptr) == (Mutex) task_Current)	\
-{	\
-	task_Current->Sync = (mutexptr);	\
-	task_Current->Line = __LINE__;	\
-	task_SaveState(__VA_ARGS__);	\
-	return task_mutex_released;	\
-	case __LINE__:	\
-	task_LoadState(__VA_ARGS__);	\
-}	\
-macro_End
-
-#define task_MutexGive	\
-task_MutexSignal
-
-#define task_MutexUnlock	\
-task_MutexSignal
+// End a blocking call
+#define task_EndBlockingCall()	\
+task_YieldIfBlocked()
 
 
+// Internal function, called when a task
+// is to be blocked due to a semaphore
+inline void task_SemBlockF(Sem* sem);
+inline void task_SemBlockF(Sem* sem)
+{
+	task_Current->Block = sem;
+	task_Current->State = task_blocked;
+}
 
-// Marks a task as completed
-// Hence, the task exits permanently
-#define	task_Complete()	\
-macro_Begin	\
-task_Current->State = task_completed;	\
-return;
+#define task_SemBlock(sem)	\
+task_SemBlockF((Sem*)(sem))
 
+
+// Internal function, called when a task
+// is to be released due to a semaphore
+void task_SemReleaseF(Sem* sem);
+void task_SemReleaseF(Sem* sem)
+{
+	Task* tsk = (Task*) task_Blocked.Value;
+	for (uword i = 0; i < bag_GetAvail(&task_Blocked); i++, tsk++)
+	{
+		if(tsk->Block == sem)
+		{
+			bag_RemoveAt(&task_Blocked, i);
+			tsk->Block = null;
+			tsk->State = task_released;
+			queue_Add(&task_Ready, tsk);
+			return;
+		}
+	}
+}
+
+#define task_SemRelease(sem)	\
+task_SemReleaseF((Sem*)(sem))
 
 
 #endif /* _CORE_TASK_H_ */
