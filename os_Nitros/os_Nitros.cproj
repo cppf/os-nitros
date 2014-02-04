@@ -175,6 +175,93 @@
     <GenerateEepFile>True</GenerateEepFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Os\Build\Attribute.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Build\Constants.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Build\Function.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Build\Macro.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Build\Merge.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Core\Context.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Core\Kernel.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Core\Mutex.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Core\Process.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Core\Sem.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Core\Task.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Core\Thread.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Data\Bag.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Data\List.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Data\Queue.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Math\Basic.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Math\Bit.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Math\Concat.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Mem\Basic.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Mem\Block.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Mem\EEPROM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Mem\Register.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Os.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Type\Buffer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Type\Character.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Type\Constants.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Type\Primitive.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Type\Ranges.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Os\Type\String.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>
@@ -231,6 +318,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Os" />
+    <Folder Include="Os\Build" />
+    <Folder Include="Os\Core" />
+    <Folder Include="Os\Data" />
+    <Folder Include="Os\Math" />
+    <Folder Include="Os\Mem" />
+    <Folder Include="Os\Type" />
     <Folder Include="src\" />
     <Folder Include="src\ASF\" />
     <Folder Include="src\ASF\common\" />
