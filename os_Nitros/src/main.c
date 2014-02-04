@@ -4,5 +4,7 @@
 int main (void)
 {
 	board_init();
+	label:;
+	void* a = &&label;
 }
 
