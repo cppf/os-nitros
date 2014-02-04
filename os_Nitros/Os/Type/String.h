@@ -21,6 +21,28 @@ typedef char*	string;
 	(!string_Compare(str1, str2))
 
 
+// Find substring of a string
+#define string_Substring3(dst, src, start)	\
+mem_Copy(dst, (src)+(start), string_Length((src)+(start)))
+	
+#define string_Substring4(dst, src, start, stop)	\
+mem_Copy(dst, (src)+(start), (stop)-(start))
+
+#define string_Substring(...)	\
+macro_Fn(macro_Fn4(__VA_ARGS__, string_Substring4, string_Substring3)(__VA_ARGS__))
+
+
+// Remove part of a string
+#define string_Remove2(str, start)	\
+(*(((char*)(str))+(start)) = '\0')
+
+#define string_Remove3(str, start, stop)	\
+mem_Copy((str)+(start), (src)+(stop), string_Length((str)+(stop)))
+
+#define string_Remove(...)	\
+macro_Fn(macro_Fn3(__VA_ARGS__, string_Remove3, string_Remove2)(__VA_ARGS__))
+
+
 // Gives first index of a character in string
 uword string_IndexOfChar(string str, char chr);
 uword string_IndexOfChar(string str, char chr)
