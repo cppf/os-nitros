@@ -22,13 +22,13 @@ typedef char*	string;
 
 
 // Gives first index of a character in string
-int	string_IndexOfChar(string str, char chr);
-int	string_IndexOfChar(string str, char chr)
+uword string_IndexOfChar(string str, char chr);
+uword string_IndexOfChar(string str, char chr)
 {
-	for(char* sptr = str; *sptr; sptr++)
+	for(uword indx = 0; *str; str++, indx++)
 	{
-		if(*sptr == chr)
-		{ return (int)(sptr - str); }
+		if(*str == chr)
+		return indx;
 	}
 	return -1;
 }
@@ -38,13 +38,13 @@ int	string_IndexOfChar(string str, char chr)
 
 // Gives the index of first appearance of a character
 // from a given string of characters in a string
-int	string_IndexOfChars(string str, char* chr);
-int	string_IndexOfChars(string str, char* chr)
+uword string_IndexOfChars(string str, char* chr);
+uword string_IndexOfChars(string str, char* chr)
 {
-	for(char* sptr = str; *sptr; sptr++)
+	for(uword indx = 0; *str; str++, indx++)
 	{
-		if(string_IndexOfChar(chr, *sptr) >= 0)
-		{ return (int)(sptr - str); }
+		if(string_IndexOfChar(chr, *str) != -1)
+		return indx;
 	}
 	return -1;
 }
@@ -53,15 +53,15 @@ int	string_IndexOfChars(string str, char* chr)
 
 
 // Gives the index of a string in another string
-int	string_IndexOf(string str, string srch_str);
-int	string_IndexOf(string str, string srch_str)
+uword string_IndexOf(string str, string srch_str);
+uword string_IndexOf(string str, string srch_str)
 {
-	char *sptr, *sptr2, *pptr;
-	for(sptr = str; *sptr; sptr++)
+	char *sptr, *pptr;
+	for(uword indx = 0; *str; str++, indx++)
 	{
-		if(*sptr != *srch_str) continue;
-		for(sptr2 = sptr + 1, pptr = srch_str + 1; (*pptr) && (*sptr2 == *pptr); sptr2++, pptr++);
-		if(*pptr == '\0') return (int)(sptr - str);
+		if(*str != *srch_str) continue;
+		for(sptr = str + 1, pptr = srch_str + 1; (*pptr) && (*sptr == *pptr); sptr++, pptr++);
+		if(*pptr == '\0') return indx;
 	}
 	return -1;
 }
@@ -94,34 +94,9 @@ void string_RemoveChars(string str, char* chr)
 	char* sptr;
 	for(sptr = str; *str; str++)
 	{
-		if(string_IndexOfChar(chr, *str) >= 0) continue;
+		if(string_IndexOfChar(chr, *str) != -1) continue;
 		*sptr = *str;
 		sptr++;
-	}
-	*sptr = '\0';
-}
-
-
-// Remove a string from another string
-void string_Remove(string str, string rmv_str);
-void string_Remove(string str, string rmv_str)
-{
-	char *sptr, *sptr2, *pptr;
-	for(sptr = str; *str; str++)
-	{
-		if(*str != *rmv_str)
-		{
-			*sptr = *str;
-			sptr++;
-			continue;
-		}
-		for(sptr2 = str + 1, pptr = rmv_str + 1; (*pptr) && (*sptr2 == *pptr); sptr2++, pptr++);
-		if(*pptr == '\0') str = sptr2 - 1;
-		else
-		{
-			*sptr = *str;
-			sptr++;
-		}
 	}
 	*sptr = '\0';
 }
