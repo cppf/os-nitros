@@ -109,19 +109,4 @@ void string_RemoveChar(string str, char chr)
 }
 
 
-// Remove all appearances of a set of characters from a string
-void string_RemoveChars(string str, char* chr);
-void string_RemoveChars(string str, char* chr)
-{
-	char* sptr;
-	for(sptr = str; *str; str++)
-	{
-		if(string_IndexOfChar(chr, *str) != -1) continue;
-		*sptr = *str;
-		sptr++;
-	}
-	*sptr = '\0';
-}
-
-
 #endif /* _TYPE_STRING_H_ */

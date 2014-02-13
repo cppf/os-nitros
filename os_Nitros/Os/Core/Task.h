@@ -97,7 +97,7 @@ void name(void);	\
 void name(void)
 
 
-// Save thread state to a buffer
+// Save task state to a buffer
 #define	task_SaveState1(var1)	\
 (*((__typeof__(var1)*)(task_Current->Store)) = var1)
 
@@ -168,7 +168,7 @@ macro_End
 macro_Fn(macro_Fn9(_0, __VA_ARGS__, task_SaveState8, task_SaveState7, task_SaveState6, task_SaveState5, task_SaveState4, task_SaveState3, task_SaveState2, task_SaveState1, macro_FnE, macro_FnE)(__VA_ARGS__))
 
 
-// Load thread state from a buffer
+// Load task state from a buffer
 #define	task_LoadState1(var1)	\
 (var1 = *((__typeof__(var1)*)(task_Current->Store)))
 
@@ -278,7 +278,7 @@ macro_End
 task_WaitWhile(!(wait_cond), __VA_ARGS__)
 
 
-// Exit out of a thread
+// Exit out of a task
 #define	task_Complete()	\
 macro_Begin	\
 task_Current->State = task_completed;	\

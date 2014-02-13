@@ -1,5 +1,5 @@
-#ifndef _TASK_KERNEL_H_
-#define _TASK_KERNEL_H_
+#ifndef _CORE_KERNEL_H_
+#define _CORE_KERNEL_H_
 
 
 // Begin a critical section
@@ -13,8 +13,8 @@ sei()
 
 
 
-void core_Scheduler(void);
-void core_Scheduler(void)
+void kernel_Scheduler(void);
+void kernel_Scheduler(void)
 {
 	while(true)
 	{
@@ -29,4 +29,4 @@ void core_Scheduler(void)
 }
 
 
-#endif /* _TASK_KERNEL_H_ */
+#endif /* _CORE_KERNEL_H_ */
