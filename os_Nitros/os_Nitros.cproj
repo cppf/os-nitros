@@ -221,6 +221,9 @@
     <Compile Include="os\math\concat.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="os\math\hash.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="os\mem\basic.h">
       <SubType>compile</SubType>
     </Compile>
