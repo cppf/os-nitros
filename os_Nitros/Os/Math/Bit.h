@@ -53,6 +53,9 @@ bit_Read
 #define bit_Clear(dst, ...)	\
 ((dst) &= ~bit_ValueByOnes(__VA_ARGS__))
 
+#define bit_Reset	\
+bit_Clear
+
 
 // Toggle
 #define bit_Toggle(dst, ...)	\

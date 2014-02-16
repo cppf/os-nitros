@@ -194,6 +194,9 @@
     <Compile Include="os\build\merge.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="os\core\event.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="os\core\kernel.h">
       <SubType>compile</SubType>
     </Compile>
