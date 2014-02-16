@@ -21,6 +21,9 @@
 
 
 // Platform Files
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #if platform_name == platform_avr
 #include <avr/io.h>
 #include <avr/portpins.h>

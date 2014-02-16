@@ -54,6 +54,11 @@ bit_Read
 ((dst) &= ~bit_ValueByOnes(__VA_ARGS__))
 
 
+// Toggle
+#define bit_Toggle(dst, ...)	\
+((dst) ^= bit_ValueByOnes(__VA_ARGS__))
+
+
 // Write
 #define	bit_Write(dst, bit_no, bit_value)	\
 ((dst) = ((dst) & ~(1 << (bit_no))) | ((bit_value) << (bit_no)))

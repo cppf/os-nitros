@@ -54,31 +54,31 @@
 
 
 // Find maximum of values
-#define	math_max2(val1, val2)	\
+#define	math_Max2(val1, val2)	\
 (((val1) > (val2))? (val1) : (val2))
 
-#define	math_max3(val1, val2, val3)	\
-math_max2(math_max2(val1, val2), val3)
+#define	math_Max3(val1, val2, val3)	\
+math_Max2(math_Max2(val1, val2), val3)
 
-#define	math_max4(val1, val2, val3, val4)	\
-math_max2(math_max2(val1, val2), math_max2(val3, val4))
+#define	math_Max4(val1, val2, val3, val4)	\
+math_Max2(math_Max2(val1, val2), math_Max2(val3, val4))
 
-#define	math_max(...)	\
-macro_Fn(macro_Fn4(__VA_ARGS__, math_max4, math_max3, math_max2)(__VA_ARGS__))
+#define	math_Max(...)	\
+macro_Fn(macro_Fn4(__VA_ARGS__, math_Max4, math_Max3, math_Max2)(__VA_ARGS__))
 
 
 // Find minimum of values
-#define	math_min2(val1, val2)	\
+#define	math_Min2(val1, val2)	\
 (((val1) < (val2))? (val1) : (val2))
 
-#define	math_min3(val1, val2, val3)	\
+#define	math_Min3(val1, val2, val3)	\
 math_min2(math_min2(val1, val2), val3)
 
-#define	math_min4(val1, val2, val3, val4)	\
-math_min2(math_min2(val1, val2), math_min2(val3, val4))
+#define	math_Min4(val1, val2, val3, val4)	\
+math_Min2(math_Min2(val1, val2), math_Min2(val3, val4))
 
 #define	math_min(...)	\
-macro_Fn(macro_Fn4(__VA_ARGS__, math_min4, math_min3, math_min2)(__VA_ARGS__))
+macro_Fn(macro_Fn4(__VA_ARGS__, math_Min4, math_Min3, math_Min2)(__VA_ARGS__))
 
 
 // Absolute value
