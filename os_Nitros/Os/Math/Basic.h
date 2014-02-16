@@ -72,7 +72,7 @@ macro_Fn(macro_Fn4(__VA_ARGS__, math_Max4, math_Max3, math_Max2)(__VA_ARGS__))
 (((val1) < (val2))? (val1) : (val2))
 
 #define	math_Min3(val1, val2, val3)	\
-math_min2(math_min2(val1, val2), val3)
+math_Min2(math_Min2(val1, val2), val3)
 
 #define	math_Min4(val1, val2, val3, val4)	\
 math_Min2(math_Min2(val1, val2), math_Min2(val3, val4))

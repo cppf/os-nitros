@@ -194,61 +194,61 @@
     <Compile Include="os\build\merge.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Core\kernel.h">
+    <Compile Include="os\core\kernel.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Core\sem.h">
+    <Compile Include="os\core\sem.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Data\bag.h">
+    <Compile Include="os\data\bag.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Data\list.h">
+    <Compile Include="os\data\list.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Data\queue.h">
+    <Compile Include="os\data\queue.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Math\basic.h">
+    <Compile Include="os\math\basic.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Math\bit.h">
+    <Compile Include="os\math\bit.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Math\concat.h">
+    <Compile Include="os\math\concat.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Mem\basic.h">
+    <Compile Include="os\mem\basic.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Mem\block.h">
+    <Compile Include="os\mem\block.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Mem\eeprom.h">
+    <Compile Include="os\mem\eeprom.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Mem\reg.h">
+    <Compile Include="os\mem\reg.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="os\os.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Type\buffer.h">
+    <Compile Include="os\type\buffer.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Type\char.h">
+    <Compile Include="os\type\char.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Type\constant.h">
+    <Compile Include="os\type\constant.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Type\primitive.h">
+    <Compile Include="os\type\primitive.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Type\range.h">
+    <Compile Include="os\type\range.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\Type\string.h">
+    <Compile Include="os\type\string.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
@@ -257,7 +257,7 @@
     <Compile Include="src\ASF\mega\boards\stk600\rcx_x\init.c">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="os\Core\task.h">
+    <None Include="os\core\task.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\asf.h">
@@ -312,11 +312,11 @@
   <ItemGroup>
     <Folder Include="os" />
     <Folder Include="os\build" />
-    <Folder Include="os\Core" />
-    <Folder Include="os\Data" />
-    <Folder Include="os\Math" />
-    <Folder Include="os\Mem" />
-    <Folder Include="os\Type" />
+    <Folder Include="os\core" />
+    <Folder Include="os\data" />
+    <Folder Include="os\math" />
+    <Folder Include="os\mem" />
+    <Folder Include="os\type" />
     <Folder Include="src\" />
     <Folder Include="src\ASF\" />
     <Folder Include="src\ASF\common\" />

@@ -1,13 +1,15 @@
 #include "../Os/Os.h"
 #include <asf.h>
 
-char buff[10];
-int main (void)
-{
-	int a = 10;
-	board_init();
 //	void* b = &&label;
 //	label:;
-	*((int*)buff) = a;
+char buff[10];
+string FirstName = "Subhajit";
+string LastName = "Sahu";
+int main (void)
+{
+	board_init();
+	string_Copy(FirstName, LastName);
+	mem_Copy(FirstName, LastName, 0xFF);
 }
 

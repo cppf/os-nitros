@@ -4,20 +4,20 @@
 
 // Define
 #define	bag_Define(sz)	\
-typedef struct _Bag##sz	\
+typedef struct _bag##sz	\
 {	\
 	uword	Count;		\
 	uword	Size;		\
 	uint	Value[sz];	\
-}Bag##sz
+}bag##sz
 
 
 // Header
-typedef struct _bag_Header
+typedef struct _bagHeader
 {
 	uword	Count;
 	uword	Size;
-}bag_Header;
+}bagHeader;
 
 
 // Default
@@ -31,17 +31,17 @@ bag_Define(128);
 bag_Define(256);
 
 #ifndef bag_Default
-#define	bag_Default	Bag16
+#define	bag_Default	bag16
 #endif
 
-typedef bag_Default	Bag;
+typedef bag_Default	bag;
 
 
 // Initialize
 #define	bag_Init(bg)	\
 macro_Begin	\
 (bg)->Count = 0;	\
-(bg)->Size = (sizeof(bg) - sizeof(bag_Header)) / sizeof((bg).Value[0]);	\
+(bg)->Size = (sizeof(bg) - sizeof(bagHeader)) / sizeof((bg).Value[0]);	\
 macro_End
 
 

@@ -4,7 +4,7 @@
 
 // Basic buffer definition
 #define	buffer_Define(sz)	\
-typedef union _Buffer##sz	\
+typedef union _buffer##sz	\
 {	\
 	int8	Int8[1];	\
 	uint8	Uint8[1];	\

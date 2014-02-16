@@ -46,12 +46,13 @@
 #include "mem/basic.h"
 #include "mem/block.h"
 #include "mem/reg.h"
+/*
 #include "data/bag.h"
 #include "data/list.h"
 #include "data/queue.h"
 #include "core/sem.h"
 #include "core/task.h"
 #include "core/kernel.h"
-
+*/
 
 #endif /* _RTOS_H_ */

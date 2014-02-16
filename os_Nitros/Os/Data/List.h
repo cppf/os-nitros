@@ -14,7 +14,7 @@ typedef struct _List##sz	\
 
 // Header
 #define list_Header	\
-bag_Header
+bagHeader
 
 
 // Default List
