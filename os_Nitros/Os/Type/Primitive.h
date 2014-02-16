@@ -14,16 +14,16 @@ typedef	unsigned long long	uint64;
 
 
 // CPU Word Size Integer
-#if cpu_WordSize == 8
+#if cpu_word_size == 8
 typedef	int8	word;
 typedef uint8	uword;
-#elif cpu_WordSize == 16
+#elif cpu_word_size == 16
 typedef	int16	word;
 typedef uint16	uword;
-#elif cpu_WordSize == 64
+#elif cpu_word_size == 64
 typedef	int32	word;
 typedef uint32	uword;
-#elif cpu_WordSize == 64
+#elif cpu_word_size == 64
 typedef	int64	word;
 typedef uint64	uword;
 #endif

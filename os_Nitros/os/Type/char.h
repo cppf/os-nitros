@@ -1,5 +1,5 @@
-#ifndef _TYPE_CHARACTER_H_
-#define _TYPE_CHARACTER_H_
+#ifndef _TYPE_CHAR_H_
+#define _TYPE_CHAR_H_
 
 
 // Character functions
@@ -36,4 +36,4 @@
 ((char_IsLower(ch))? (ch - 'a' + 'A') : (ch))
 
 
-#endif /* _TYPE_CHARACTER_H_ */
+#endif /* _TYPE_CHAR_H_ */

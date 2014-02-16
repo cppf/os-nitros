@@ -3,27 +3,25 @@
 
 
 // Build Support
-#include "Build/Macro.h"
-#include "Build/Merge.h"
-#include "Build/Function.h"
-#include "Build/Constants.h"
-#include "Build/Attribute.h"
+#include "build/macro.h"
+#include "build/merge.h"
+#include "build/constant.h"
 
 
 // Compilation Options
-#define platform_Name		platform_Name_AVR
-#define compiler_Name		compiler_Name_GCC
-#define cpu_WordSize		8
-#define cpu_ClockFreq		16000000
+#define platform_name		platform_avr
+#define compiler_name		compiler_gcc
+#define cpu_word_size		8
+#define cpu_clock_freq		16000000
 
 
 // Sizes of RAM, Flash
-#define ram_Size	(RAMEND + 1)
-#define flash_Size	(FLASHEND + 1)
+#define ram_size	(RAMEND + 1)
+#define flash_size	(FLASHEND + 1)
 
 
 // Platform Files
-#if platform_Name == platform_Name_AVR
+#if platform_name == platform_avr
 #include <avr/io.h>
 #include <avr/portpins.h>
 #include <avr/interrupt.h>
@@ -31,24 +29,26 @@
 
 
 // Include Files
-#include "Type/Constants.h"
-#include "Type/Primitive.h"
-#include "Type/Character.h"
-#include "Type/Ranges.h"
-#include "Type/Buffer.h"
-#include "Type/String.h"
-#include "Math/Concat.h"
-#include "Math/Basic.h"
-#include "Math/Bit.h"
-#include "Mem/Basic.h"
-#include "Mem/Block.h"
-#include "Mem/Register.h"
-#include "Data/Bag.h"
-#include "Data/List.h"
-#include "Data/Queue.h"
-#include "Core/Sem.h"
-#include "Core/Task.h"
-#include "Core/Kernel.h"
+#include "build/function.h"
+#include "build/attribute.h"
+#include "type/constant.h"
+#include "type/primitive.h"
+#include "type/char.h"
+#include "type/range.h"
+#include "type/buffer.h"
+#include "type/string.h"
+#include "math/concat.h"
+#include "math/basic.h"
+#include "math/bit.h"
+#include "mem/basic.h"
+#include "mem/block.h"
+#include "mem/reg.h"
+#include "data/bag.h"
+#include "data/list.h"
+#include "data/queue.h"
+#include "core/sem.h"
+#include "core/task.h"
+#include "core/kernel.h"
 
 
 #endif /* _RTOS_H_ */

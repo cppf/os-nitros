@@ -28,12 +28,12 @@ typedef union _Buffer##sz	\
 	ulong	Ulong[1];	\
 	float	Float[1];	\
 	double	Double[1];	\
-}Buffer##sz
+}buffer##sz
 
 
 // Default Buffer
 buffer_Define(16);
-typedef	Buffer16	Buffer;
+typedef	buffer16	buffer;
 
 
 #endif /* _TYPE_BUFFER_H_ */
