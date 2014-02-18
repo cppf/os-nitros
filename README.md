@@ -4,7 +4,7 @@ nitros
 A simple, easy to use OS for AVR microcontrollers.
 
 
-## Design requirements
+### Design requirements
 1. Minimal simple, and yet a strong OS concept
 1. Ensure minimal RAM overhead (Flash overhead is a non-issue)
 1. Ensure proper event handling, and fast execution.
