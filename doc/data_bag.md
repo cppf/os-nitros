@@ -31,7 +31,7 @@ void main()
     /*
      * MyBag.Value[] = {1, 2, 3}
      */
-    // remove 1 item
+    // remove 1 item from a location
     bag_RemoveAt(MyBag, 0);	// item at index 0 (1)
     /*
      * MyBag.Value[] = {3, 2}
@@ -39,6 +39,11 @@ void main()
     // add 2 more items
     bag_Add(MyBag, 4);
     bag_Add(MyBag, 5);
+    /*
+     * MyBag.Value[] = {3, 2, 4, 5}
+     */
+     // remove 1 specific item
+     bag_Remove(MyBag, 2);
     /*
      * MyBag.Value[] = {3, 2, 4, 5}
      */
