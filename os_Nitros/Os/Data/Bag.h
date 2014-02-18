@@ -40,19 +40,19 @@ typedef bag_Default	bag;
 // Initialize
 #define	bag_Init(bg)	\
 macro_Begin	\
-(bg)->Count = 0;	\
-(bg)->Size = (sizeof(bg) - sizeof(bagHeader)) / sizeof((bg).Value[0]);	\
+(bg).Count = 0;	\
+(bg).Size = (sizeof(bg) - sizeof(bagHeader)) / sizeof((bg).Value[0]);	\
 macro_End
 
 
 // Clear
 #define	bag_Clear(bg)	\
-((bg)->Count = 0)
+((bg).Count = 0)
 
 
 // GetAvail
 #define	bag_GetAvail(bg)	\
-((bg)->Count)
+((bg).Count)
 
 
 // HasAvail
@@ -62,7 +62,7 @@ bag_GetAvail(bg)
 
 // GetFree
 #define	bag_GetFree(bg)	\
-((bg)->Size - (bg)->Count)
+((bg).Size - (bg).Count)
 
 
 #define bag_HasFree(bg)	\

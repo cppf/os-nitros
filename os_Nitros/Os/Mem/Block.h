@@ -12,8 +12,8 @@
 
 
 // Checks equality
-#define	mem_Equals(str1, str2)	\
-(!mem_Compare(str1, str2))
+#define	mem_Equals(mem1, mem2, size)	\
+(!mem_Compare(mem1, mem2, size))
 
 
 // Initialize
