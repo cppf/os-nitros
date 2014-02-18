@@ -6,3 +6,8 @@ bag
 A *bag* can be used in cases where it is requred to store a number of items, but their order in which they are kept is unimportant.
 
 ## Structure
+| uword: **Count** | uword: **Size** | uint **Value[]** |
+|------------------|-----------------|------------------|
+
+
+
