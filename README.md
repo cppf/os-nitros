@@ -17,4 +17,20 @@ Non-preemtive task switching is a simple concept, and has low overhead. It remov
 Events
 ------
 * Simple
-* Easy to implement
+* Easy to implement.
+* Similar to interrupt.
+
+Tasks
+-----
+* Foreground tasks
+* Non-preemtive
+* Require Synchronization
+
+
+Named Object
+------------
+* Reduce module to module dependency
+* Uses a hashing technique.
+
+
+
