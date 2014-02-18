@@ -1,5 +1,5 @@
-#ifndef _BUILD_CONSTANT_H_
-#define _BUILD_CONSTANT_H_
+#ifndef _MAKE_CONSTANT_H_
+#define _MAKE_CONSTANT_H_
 
 
 // Platform
@@ -12,4 +12,4 @@
 #define compiler_visualc	0x0201
 
 
-#endif /* _BUILD_CONSTANT_H_ */
+#endif /* _MAKE_CONSTANT_H_ */

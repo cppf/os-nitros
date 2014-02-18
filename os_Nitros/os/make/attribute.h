@@ -1,5 +1,5 @@
-#ifndef _BUILD_ATTRIBUTE_H_
-#define _BUILD_ATTRIBUTE_H_
+#ifndef _MAKE_ATTRIBUTE_H_
+#define _MAKE_ATTRIBUTE_H_
 
 
 // Attribute specification
@@ -34,4 +34,4 @@ __attribute__((__VA_ARGS__))
 
 
 
-#endif /* _BUILD_ATTRIBUTE_H_ */
+#endif /* _MAKE_ATTRIBUTE_H_ */

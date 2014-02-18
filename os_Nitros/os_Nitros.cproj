@@ -179,19 +179,19 @@
     <GenerateEepFile>True</GenerateEepFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="os\build\attribute.h">
+    <Compile Include="os\make\attribute.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\build\constant.h">
+    <Compile Include="os\make\constant.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\build\function.h">
+    <Compile Include="os\make\function.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\build\macro.h">
+    <Compile Include="os\make\macro.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="os\build\merge.h">
+    <Compile Include="os\make\merge.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="os\core\event.h">
@@ -317,7 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="os" />
-    <Folder Include="os\build" />
+    <Folder Include="os\make" />
     <Folder Include="os\core" />
     <Folder Include="os\data" />
     <Folder Include="os\math" />

@@ -3,9 +3,9 @@
 
 
 // Build Support
-#include "build/macro.h"
-#include "build/merge.h"
-#include "build/constant.h"
+#include "make/macro.h"
+#include "make/merge.h"
+#include "make/constant.h"
 
 
 // Compilation Options
@@ -32,8 +32,8 @@
 
 
 // Include Files
-#include "build/function.h"
-#include "build/attribute.h"
+#include "make/function.h"
+#include "make/attribute.h"
 #include "type/constant.h"
 #include "type/primitive.h"
 #include "type/char.h"

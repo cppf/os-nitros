@@ -1,5 +1,5 @@
-#ifndef _BUILD_MACRO_H_
-#define _BUILD_MACRO_H_
+#ifndef _MAKE_MACRO_H_
+#define _MAKE_MACRO_H_
 
 
 // Support macro overloading
@@ -53,4 +53,4 @@
 #define	macro_Bgn	macro_Begin
 
 
-#endif /* _BUILD_MACRO_H_ */
+#endif /* _MAKE_MACRO_H_ */

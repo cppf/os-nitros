@@ -1,5 +1,5 @@
-#ifndef _BUILD_FUNCTION_H_
-#define _BUILD_FUNCTION_H_
+#ifndef _MAKE_FUNCTION_H_
+#define _MAKE_FUNCTION_H_
 
 
 // Macros: typeOf
@@ -37,4 +37,4 @@ __asm__ __volatile__
 text "\n\t"
 
 
-#endif /* _BUILD_FUNCTION_H_ */
+#endif /* _MAKE_FUNCTION_H_ */
