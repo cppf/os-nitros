@@ -8,9 +8,9 @@ A *bag* can be used in cases where it is requred to store a number of items, but
 ## Structure
 | uword: **Count** | uword: **Size** | uint **Value[]** |
 |------------------|-----------------|------------------|
-Count: number of items contained in the *bag*
-Size: maximum number of items that can be added to this *bag*
-Value[]: array where the items are stored
+Count: number of items contained in the *bag* <br/>
+Size: maximum number of items that can be added to this *bag* <br/>
+Value[]: array where the items are stored <br/>
 
 
 
