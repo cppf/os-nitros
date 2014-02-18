@@ -45,9 +45,8 @@ void main()
      // remove 1 specific item
      bag_Remove(MyBag, 2);
     /*
-     * MyBag.Value[] = {3, 2, 4, 5}
+     * MyBag.Value[] = {3, 5, 4}
      */
-     
 }
 
 
