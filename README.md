@@ -1,6 +1,5 @@
 nitros
-=========
-
+======
 A simple, easy to use OS for AVR microcontrollers.
 
 
@@ -27,6 +26,8 @@ Non-preemtive task switching is a simple concept, and has low overhead. It remov
 ### Named Object
 * Reduce module to module dependency
 * Uses a hashing technique.
+
+
 
 
 
