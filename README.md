@@ -1,4 +1,4 @@
-nitross
+nitros
 ======
 A simple, easy to use OS for AVR microcontrollers.
 
