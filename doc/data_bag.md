@@ -1,6 +1,7 @@
 bag
 ===
-> Category: data / bag 
+`data / bag`
+
 A simple, easy to use OS for AVR microcontrollers.
 
 Structure
