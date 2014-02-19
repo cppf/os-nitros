@@ -5,6 +5,7 @@
 // Platform
 #define platform_win32		0x0100
 #define platform_avr		0x0101
+#define platform_arduino	0x0102
 
 
 // Compiler

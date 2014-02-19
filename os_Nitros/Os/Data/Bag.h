@@ -21,40 +21,41 @@ typedef struct _bagHeader
 
 
 // Access
-#define bag_ItemSize(bg)		(sizeof((bg).Item[0]))
-#define bag_BuffSize(bg)		(sizeof(bg) - sizeof(bagHeader))
-#define bag_Size(bg)			(bag_BuffSize(bg) / bag_ItemSize(bg))
-#define bag_Max(bg)				(bag_Size(bg) - 1)
-#define bag_Limit(bg, indx)		((indx) & bag_Max(bg))
-#define	bag_Count(bg)			((bg).Count)
-#define bag_Avail				bag_Count
-#define bag_IsAvail				bag_Count
-#define	bag_Free(bg)			(bag_Size(bg) - (bg).Count)
-#define bag_IsFree				bag_Free
-#define bag_Rear(bg)			((bg).Rear)
-#define bag_Back(bg)			bag_Limit((bg).Rear - 1)
-#define bag_Front(bg)			bag_Limit((bg).Rear - (bg).Count)
-#define bag_MidRear(bg, indx)	bag_Limit((bg).Rear - indx)
-#define bag_MidBack(bg, indx)	bag_Limit((bg).Rear - 1 - indx)
-#define bag_MidFront(bg, indx)	bag_Limit((bg).Rear - (bg).Count + indx)
-#define bag_Mid					bag_MidFront
-#define bag_RearPtr(bg)			((bg).Item + bag_Rear(bg))
-#define bag_BackPtr(bg)			((bg).Item + bag_Back(bg))
-#define bag_FrontPtr(bg)		((bg).Item + bag_Front(bg))
-#define bag_MidRearPtr(bg)		((bg).Item + bag_MidRear(bg))
-#define bag_MidBackPtr(bg)		((bg).Item + bag_MidBack(bg))
-#define bag_MidFrontPtr(bg)		((bg).Item + bag_MidFront(bg))
-#define bag_MidPtr				bag_MidFront
+#define bag_ItemSize(bg)			(sizeof((bg).Item[0]))
+#define bag_BuffSize(bg)			(sizeof(bg) - sizeof(bagHeader))
+#define bag_Size(bg)				(bag_BuffSize(bg) / bag_ItemSize(bg))
+#define bag_Max(bg)					(bag_Size(bg) - 1)
+#define bag_Limit(bg, indx)			((indx) & bag_Max(bg))
+#define	bag_Count(bg)				((bg).Count)
+#define bag_Avail					bag_Count
+#define bag_IsAvail					bag_Count
+#define	bag_Free(bg)				(bag_Size(bg) - (bg).Count)
+#define bag_IsFree					bag_Free
+#define bag_Rear(bg)				((bg).Rear)
+#define bag_Back(bg)				bag_Limit(bg, (bg).Rear - 1)
+#define bag_Front(bg)				bag_Limit(bg, (bg).Rear - (bg).Count)
+#define bag_MidRear(bg, indx)		bag_Limit(bg, (bg).Rear - indx)
+#define bag_MidBack(bg, indx)		bag_Limit(bg, (bg).Rear - 1 - indx)
+#define bag_MidFront(bg, indx)		bag_Limit(bg, (bg).Rear - (bg).Count + indx)
+#define bag_Mid						bag_MidFront
+#define bag_RearPtr(bg)				((bg).Item + bag_Rear(bg))
+#define bag_BackPtr(bg)				((bg).Item + bag_Back(bg))
+#define bag_FrontPtr(bg)			((bg).Item + bag_Front(bg))
+#define bag_MidRearPtr(bg, indx)	((bg).Item + bag_MidRear(bg, indx))
+#define bag_MidBackPtr(bg, indx)	((bg).Item + bag_MidBack(bg, indx))
+#define bag_MidFrontPtr(bg, indx)	((bg).Item + bag_MidFront(bg, indx))
+#define bag_MidPtr					bag_MidFront
 
 
 // Peek
-#define bag_PeekRear(bg)		(*bag_RearPtr(bg))
-#define bag_PeekBack(bg)		(*bag_BackPtr(bg))
-#define bag_PeekFront(bg)		(*bag_FrontPtr(bg))
-#define bag_PeekMidRear(bg)		(*bag_MidRearPtr(bg))
-#define bag_PeekMidBack(bg)		(*bag_MidBackPtr(bg))
-#define bag_PeekMidFront(bg)	(*bag_MidFrontPtr(bg))
-#define bag_PeekMid				bag_PeekMidFront
+#define bag_PeekRear(bg)			(*bag_RearPtr(bg))
+#define bag_PeekBack(bg)			(*bag_BackPtr(bg))
+#define bag_PeekFront(bg)			(*bag_FrontPtr(bg))
+#define bag_PeekMidRear(bg, indx)	(*bag_MidRearPtr(bg, indx))
+#define bag_PeekMidBack(bg, indx)	(*bag_MidBackPtr(bg, indx))
+#define bag_PeekMidFront(bg, indx)	(*bag_MidFrontPtr(bg, indx))
+#define bag_PeekMid					bag_PeekMidFront
+#define bag_Peek					bag_PeekMidFront
 
 
 // Clear / Init / RemoveAll
@@ -75,9 +76,10 @@ macro_End
 macro_Begin	\
 (bg).Count++;	\
 *bag_RearPtr(bg) = item;	\
-(bg).Rear = bag_Limit((bg).Rear + 1);	\
+(bg).Rear = bag_Limit(bg, (bg).Rear + 1);	\
 macro_End
 #define bag_PushBack	bag_PushRear
+#define bag_Push		bag_PushRear
 #define bag_AddToRear	bag_PushRear
 #define bag_AddToBack	bag_PushRear
 #define bag_Add			bag_PushRear
@@ -86,13 +88,17 @@ macro_End
 // Pop / RemoveFrom
 #define bag_PopFront(bg)	\
 ((bg).Count--)
+#define bag_Pop				bag_PopFront
 #define bag_RemoveFromFront	bag_PopFront
 
 #define bag_PopRear(bg)	\
 macro_Begin	\
 (bg).Count--;	\
-(bg).Rear = bag_Limit((bg).Rear - 1);	\
+(bg).Rear = bag_Limit(bg, (bg).Rear - 1);	\
 macro_End
+#define bag_PopBack			bag_PopRear
+#define bag_RemoveFromRear	bag_PopRear
+#define bag_RemoveFromBack	bag_PopRear
 
 
 // IndexOf / Find
