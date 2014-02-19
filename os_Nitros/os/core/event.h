@@ -3,8 +3,8 @@
 
 
 // Define event handler
-#define eventFn	\
-void attrib(no_inline)
+#define event	\
+noInline
 
 
 // Set event handler

@@ -47,7 +47,7 @@
 	})
 	
 	#define macro_Return(var)	\
-	(var);
+	(var)
 #endif
 
 #define	macro_Bgn	macro_Begin

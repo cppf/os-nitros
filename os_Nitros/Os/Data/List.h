@@ -3,35 +3,18 @@
 
 
 // Define
-#define	list_Define(sz)	\
-typedef struct _List##sz	\
+#define	list_Define(type, sz)	\
+typedef struct _list_##sz##type	\
 {	\
 	uword	Count;		\
 	uword	Size;		\
-	uint	Value[sz];	\
-}List##sz
+	type	Value[sz];	\
+}list_##sz##type
 
 
 // Header
 #define list_Header	\
 bagHeader
-
-
-// Default List
-list_Define(2);
-list_Define(4);
-list_Define(8);
-list_Define(16);
-list_Define(32);
-list_Define(64);
-list_Define(128);
-list_Define(256);
-
-#ifndef list_Default
-#define	list_Default	List16
-#endif
-
-typedef list_Default	List;
 
 
 // Initialize
@@ -73,13 +56,20 @@ bag_Add(lst, elem)
 
 
 // RemoveAt
-void list_RemoveAtF(List* lst, uword indx);
-void list_RemoveAtF(List* lst, uword indx)
+void list_RemoveAtF(List* lst, uword indx, uword sft);
+void list_RemoveAtF(List* lst, uword indx, uword sft)
 {
 	lst->Count--;
-	uint moveBytes = (lst->Count - indx) << 1;
+	uint moveBytes = (lst->Count - indx) << sft;
 	if(moveBytes) mem_Copy(lst->Value + indx, lst->Value + indx + 1, moveBytes);
 }
+
+#define list_RemoveAt(lst, indx)	\
+macro_Begin	\
+(lst).Count--;	\
+uint moveBytes = ((lst).Count - (indx)) * sizeof((lst).Value[0]);	\
+if(moveBytes) mem_Copy((lst).Value + (indx), (lst).Value + (indx) + 1, moveBytes);	\
+macro_End
 
 #define list_RemoveAt(lst, indx)	\
 list_RemoveAtF((List*)(lst), (uint)(indx))

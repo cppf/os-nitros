@@ -43,11 +43,12 @@
 #include "math/concat.h"
 #include "math/basic.h"
 #include "math/bit.h"
+#include "math/hash.h"
 #include "mem/basic.h"
 #include "mem/block.h"
 #include "mem/reg.h"
-/*
 #include "data/bag.h"
+/*
 #include "data/list.h"
 #include "data/queue.h"
 #include "core/sem.h"

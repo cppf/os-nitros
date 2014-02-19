@@ -2,7 +2,28 @@
 #define _MATH_HASH_H_
 
 
+// 8-bit XOR-ROR hashing
+uint8 math_Hash8F(uint8* data, uint size);
+uint8 math_Hash8F(uint8* data, uint size)
+{
+	uint8 hash = 0;
+	for(; size > 0; data++, size--)
+	{
+		hash ^= *data;
+		assembly(
+		line("bst %0, 0")
+		line("lsr %0")
+		line("bld %0, 7")
+		: "=r"(hash)
+		:
+		:
+		);
+	}
+	return hash;
+}
 
+#define math_Hash8(data, size)	\
+math_Hash8F((uint8*)(data), (uint)(size))
 
 
 #endif /* _MATH_HASH_H_ */

@@ -21,14 +21,16 @@
 mem_Set(dst, size, 0)
 
 
-uword mem_IndexOfF(void* block, uint block_no, void* data, uint data_sz);
-uword mem_IndexOfF(void* block, uint block_no, void* data, uint data_sz)
+noInline uword mem_IndexOfF(byte* block, uword block_no, byte* data, uint data_sz);
+uword mem_IndexOfF(byte* block, uword block_no, byte* data, uint data_sz)
 {
-	return 0;
+	for(uword i=0; i < block_no; block+=data_sz, i++)
+		if(mem_Compare(block, data, data_sz) == 0) return i;
+	return (uword) -1;
 }
 
 #define mem_IndexOf(block, block_no, data, data_sz)	\
-mem_IndexOfF((void*)(block), (uint)(block_no), (void*)(data), (uint)(data_sz))
+mem_IndexOfF((byte*)(block), (uword)(block_no), (byte*)(data), (uint)(data_sz))
 
 #define mem_Find	\
 mem_IndexOf
