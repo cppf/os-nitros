@@ -21,7 +21,24 @@
 mem_Set(dst, size, 0)
 
 
-noInline uword mem_IndexOfF(byte* block, uword block_no, byte* data, uint data_sz);
+// Swap
+void mem_SwapF(byte* mem1, byte* mem2, uint size);
+void mem_SwapF(byte* mem1, byte* mem2, uint size)
+{
+	byte tmp;
+	for(; size > 0; mem1++, mem2++, size--)
+	{
+		tmp = *mem1;
+		*mem1 = *mem2;
+		*mem2 = tmp;
+	}
+}
+#define mem_Swap(mem1, mem2, size)	\
+mem_SwapF((byte*)(mem1), (byte*)(mem2), (uint)(size))
+
+
+// IndexOf
+uword mem_IndexOfF(byte* block, uword block_no, byte* data, uint data_sz);
 uword mem_IndexOfF(byte* block, uword block_no, byte* data, uint data_sz)
 {
 	for(uword i=0; i < block_no; block+=data_sz, i++)

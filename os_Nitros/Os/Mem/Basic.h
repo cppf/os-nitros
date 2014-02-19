@@ -7,21 +7,21 @@
 
 
 // Swap
-#define	mem_Swap3(a, b, temp)	\
+#define	swap3(a, b, temp)	\
 macro_Begin		\
 temp = a;	\
 a = b;		\
 b = temp;	\
 macro_End
 
-#define	mem_Swap2(a, b)	\
+#define	swap2(a, b)	\
 macro_Begin	\
 a ^= b;	\
 b ^= a;	\
 a ^= b;	\
 macro_End
 
-#define	mem_Swap(...)	\
+#define	swap(...)	\
 macro_Fn(macro_Fn3(__VA_ARGS__, mem_Swap3, mem_Swap2)(__VA_ARGS__))
 
 

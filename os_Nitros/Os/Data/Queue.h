@@ -9,7 +9,7 @@ typedef struct _Queue##sz	\
 	uword	Count;		\
 	uword	Front;		\
 	uword	Max;		\
-	uint	Value[sz];	\
+	uint	Item[sz];	\
 }Queue##sz
 
 

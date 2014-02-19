@@ -8,7 +8,7 @@ typedef struct _list_##sz##type	\
 {	\
 	uword	Count;		\
 	uword	Size;		\
-	type	Value[sz];	\
+	type	Item[sz];	\
 }list_##sz##type
 
 
