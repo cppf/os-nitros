@@ -3,53 +3,70 @@
 
 
 // Define
-#define	bag_Define(type, sz)	\
-typedef struct _bag_##sz##type	\
+#define	bag_Define(sz)	\
+typedef struct _bag##sz	\
 {	\
-	uword	Count;		\
-	uword	Size;		\
-	type	Value[sz];	\
-}bag_##sz##type
+	uint	Max;	\
+	uint	Front;	\
+	uint	Count;	\
+	byte	Value[sz];	\
+}bag##sz
 
 
 // Header
 typedef struct _bagHeader
 {
-	uword	Count;
-	uword	Size;
+	uint	Max;
+	uint	Count;
+	uint	Size;
 }bagHeader;
+
+
+// Default
+bag_Define(8);
+bag_Define(16);
+bag_Define(32);
+bag_Define(64);
+bag_Define(128);
+bag_Define(256);
+bag_Define(512);
+bag_Define(1024);
+bag_Define(2048);
+bag_Define(4096);
+bag_Define(8192);
+bag_Define(16384);
+typedef bag32 bag;
 
 
 // Initialize
 #define	bag_Init(bg)	\
 macro_Begin	\
+(bg).Front = 0;	\
 (bg).Count = 0;	\
-(bg).Size = (sizeof(bg) - sizeof(bagHeader)) / sizeof((bg).Value[0]);	\
+(bg).Max = sizeof(bg) - sizeof(bagHeader) - 1;	\
 macro_End
 
 
-// Clear
+// Clear / RemoveAll
 #define	bag_Clear(bg)	\
 ((bg).Count = 0)
+#define bag_RemoveAll	bag_Clear
 
 
-// GetAvail
-#define	bag_GetAvail(bg)	\
+// Count / Avail
+#define	bag_Count(bg)	\
 ((bg).Count)
+#define bag_Avail	bag_Count
 
 
-// HasAvail
-#define bag_HasAvail(bg)	\
-bag_GetAvail(bg)
+// Free
+#define	bag_Free(bg)	\
+((bg).Max - (bg).Count)
 
 
-// GetFree
-#define	bag_GetFree(bg)	\
-((bg).Size - (bg).Count)
-
-
-#define bag_HasFree(bg)	\
-bag_GetFree(bg)
+// Add / Push
+#define bag_AddToRear()	\
+(bg).Value[(bg).Front + (bg).Count] = elem
 
 
 // IndexOf
@@ -80,4 +97,4 @@ macro_Return(indx);	\
 macro_End
 
 
-#endif /* _DATA_BAG_H_ */
+#endif /* _DATA_LIST_H_ */

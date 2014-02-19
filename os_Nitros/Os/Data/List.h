@@ -56,8 +56,8 @@ bag_Add(lst, elem)
 
 
 // RemoveAt
-void list_RemoveAtF(List* lst, uword indx, uword sft);
-void list_RemoveAtF(List* lst, uword indx, uword sft)
+void list_RemoveAtF(list* lst, uword indx, uword sft);
+void list_RemoveAtF(list* lst, uword indx, uword sft)
 {
 	lst->Count--;
 	uint moveBytes = (lst->Count - indx) << sft;
