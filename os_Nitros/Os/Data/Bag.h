@@ -34,28 +34,32 @@ typedef struct _bagHeader
 #define bag_Rear(bg)				((bg).Rear)
 #define bag_Back(bg)				bag_Limit(bg, (bg).Rear - 1)
 #define bag_Front(bg)				bag_Limit(bg, (bg).Rear - (bg).Count)
-#define bag_MidRear(bg, indx)		bag_Limit(bg, (bg).Rear - indx)
-#define bag_MidBack(bg, indx)		bag_Limit(bg, (bg).Rear - 1 - indx)
-#define bag_MidFront(bg, indx)		bag_Limit(bg, (bg).Rear - (bg).Count + indx)
-#define bag_Mid						bag_MidFront
+#define bag_IndexRearPos(bg, pos)	bag_Limit(bg, (bg).Rear - (pos))
+#define bag_IndexBackPos(bg, pos)	bag_Limit(bg, (bg).Rear - 1 - (pos))
+#define bag_IndexFrontPos(bg, pos)	bag_Limit(bg, (bg).Rear - (bg).Count + (pos))
+#define bag_Index					bag_IndexFrontPos
+#define bag_RearPos(bg, indx)		bag_Limit(bg, (indx) - (bg).Rear)
+#define bag_BackPos(bg, indx)		bag_Limit(bg, (indx) - (bg).Rear + 1)
+#define bag_FrontPos(bg, indx)		bag_Limit(bg, (indx) - (bg).Rear + (bg).Count)
+#define bag_Pos						bag_FrontPos
 #define bag_RearPtr(bg)				((bg).Item + bag_Rear(bg))
 #define bag_BackPtr(bg)				((bg).Item + bag_Back(bg))
 #define bag_FrontPtr(bg)			((bg).Item + bag_Front(bg))
-#define bag_MidRearPtr(bg, indx)	((bg).Item + bag_MidRear(bg, indx))
-#define bag_MidBackPtr(bg, indx)	((bg).Item + bag_MidBack(bg, indx))
-#define bag_MidFrontPtr(bg, indx)	((bg).Item + bag_MidFront(bg, indx))
-#define bag_MidPtr					bag_MidFront
+#define bag_MidPtrRearPos(bg, pos)	((bg).Item + bag_IndexRearPos(bg, pos))
+#define bag_MidPtrBackPos(bg, pos)	((bg).Item + bag_IndexBackPos(bg, pos))
+#define bag_MidPtrFrontPos(bg, pos)	((bg).Item + bag_IndexFrontPos(bg, pos))
+#define bag_MidPtr					bag_MidPtrFrontPos
 
 
 // Peek
-#define bag_PeekRear(bg)			(*bag_RearPtr(bg))
-#define bag_PeekBack(bg)			(*bag_BackPtr(bg))
-#define bag_PeekFront(bg)			(*bag_FrontPtr(bg))
-#define bag_PeekMidRear(bg, indx)	(*bag_MidRearPtr(bg, indx))
-#define bag_PeekMidBack(bg, indx)	(*bag_MidBackPtr(bg, indx))
-#define bag_PeekMidFront(bg, indx)	(*bag_MidFrontPtr(bg, indx))
-#define bag_PeekMid					bag_PeekMidFront
-#define bag_Peek					bag_PeekMidFront
+#define bag_PeekRear(bg)				(*bag_RearPtr(bg))
+#define bag_PeekBack(bg)				(*bag_BackPtr(bg))
+#define bag_PeekFront(bg)				(*bag_FrontPtr(bg))
+#define bag_PeekMidRearPos(bg, pos)		(*bag_MidPtrRearPos(bg, pos))
+#define bag_PeekMidBackPos(bg, pos)		(*bag_MidPtrBackPos(bg, pos))
+#define bag_PeekMidFrontPos(bg, pos)	(*bag_MidPtrFrontPos(bg, pos))
+#define bag_PeekMid						bag_PeekMidFrontPos
+#define bag_Peek						bag_PeekMidFrontPos
 
 
 // Clear / Init / RemoveAll
@@ -68,14 +72,14 @@ typedef struct _bagHeader
 #define bag_PushFront(bg, item)	\
 macro_Begin	\
 (bg).Count++;	\
-*bag_FrontPtr(bg) = item;	\
+*bag_FrontPtr(bg) = (item);	\
 macro_End
 #define bag_AddToFront	bag_PushFront
 
 #define bag_PushRear(bg, item)	\
 macro_Begin	\
 (bg).Count++;	\
-*bag_RearPtr(bg) = item;	\
+*bag_RearPtr(bg) = (item);	\
 (bg).Rear = bag_Limit(bg, (bg).Rear + 1);	\
 macro_End
 #define bag_PushBack	bag_PushRear
@@ -105,28 +109,84 @@ macro_End
 #define bag_IndexOf(bg, item)	\
 macro_Begin	\
 uword i = bag_Count(bg);	\
-uword indx = bag_Rear(bg);	\
+uword indx = bag_Back(bg);	\
 for(; i > 0; indx=bag_Limit(bg, indx-1), i--)	\
 if((bg).Item[indx] == (item)) break;	\
 indx = (i > 0)? indx : (uword) -1;	\
 macro_Return(indx);	\
 macro_End
-#define bag_Find	bag_IndexOf
+#define bag_Find					bag_IndexOf
 
 
 // InsertAt / Insert / PushMid
+#define bag_InsertAt(bg, indx, item)	\
+macro_Begin	\
+bag_Push(bg, (bg).Item[indx]);	\
+(bg).Item[indx] = (item);	\
+macro_End
+#define bag_Insert		bag_InsertAt
+#define bag_PushMid		bag_InsertAt
 
 
+// DeleteAt / Delete / RemoveAt / PopMid
+#define bag_DeleteAt(bg, indx)	\
+macro_Begin	\
+(bg).Item[indx] = bag_PeekFront(bg);	\
+bag_PopFront(bg);	\
+macro_End
+#define bag_Delete		bag_DeleteAt
+#define bag_RemoveAt	bag_DeleteAt
+#define bag_PopMid		bag_DeleteAt
 
+
+// InsertAtOrder / InsertOrder / PushMidOrder
+#define bag_InsertAtOrder(bg, indx, item)	\
+macro_Begin	\
+(bg).Count++;	\
+if(bag_Back(bg) < (indx))	\
+mem_Move((bg).Item, (bg).Item+1, (bg).Rear*bag_ItemSize(bg));	\
+if(bag_Rear(bg) < (indx))	\
+(bg).Item[0] = (bg).Item[bag_Size(bg) - 1];	\
+if((indx) < bag_Size(bg)-1)	\
+mem_Move((bg).Item+(indx), (bg).Item+(indx)+1, bag_Size(bg)-(indx)-1);	\
+(bg).Item[indx] = (item);	\
+(bg).Rear = bag_Limit(bg, (bg).Rear + 1);	\
+macro_End
+#define bag_InsertOrder		bag_InsertAtOrder
+#define bag_PushMidOrder	bag_InsertAtOrder
+
+
+// DeleteAtOrder / DeleteOrder / RemoveAtOrder / PopMidOrder
+#define bag_DeleteAtOrder(bg, indx)	\
+macro_Begin	\
+(bg).Count--;	\
+if((indx) < bag_Size(bg)-1)	\
+mem_Move((bg).Item+(indx), (bg).Item+(indx)+1, bag_Size(bg)-(indx)-1);	\
+if(bag_Back(bg) < (indx))	\
+(bg).Item[bag_Size(bg) - 1] = (bg).Item[0];	\
+if((bag_Back(bg) < (indx)) && (bag_Back(bg) > 0))	\
+mem_Move((bg).Item, (bg).Item+1, bag_Back(bg) * bag_ItemSize(bg));	\
+(bg).Rear = bag_Limit(bg, (bg).Rear - 1);	\
+macro_End
+#define bag_DeleteOrder		bag_DeleteAtOrder
+#define bag_RemoveAtOrder	bag_DeleteAtOrder
+#define bag_PopMidOrder		bag_DeleteAtOrder
 
 
 // Remove
-#define bag_Remove(bg, elem)	\
+#define bag_Remove(bg, item)	\
 macro_Begin	\
-uword indx = bag_IndexOf(bg, elem);	\
+uword indx = bag_IndexOf(bg, item);	\
 if(indx < (bg).Count) bag_RemoveAt(bg, indx);	\
-macro_Return(indx);	\
 macro_End
 
 
-#endif /* _DATA_LIST_H_ */
+// RemoveOrder
+#define bag_RemoveOrder(bg, item)	\
+macro_Begin	\
+uword indx = bag_IndexOf(bg, item);	\
+if(indx < (bg).Count) bag_RemoveAtOrder(bg, indx);	\
+macro_End
+
+
+#endif /* _DATA_BAG_H_ */
