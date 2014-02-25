@@ -3,21 +3,17 @@
 
 
 // Define
-#define	bag_Define(typ, sz)	\
-typedef struct _bag_##sz##typ	\
-{	\
-	uword	Count;	\
-	uword	Rear;	\
-	typ		Item[sz];	\
-}bag_##sz##typ
-
-
-// Header
-typedef struct _bagHeader
+template <typename T, uint sz>
+class bag
 {
+	public:
 	uword	Count;
 	uword	Rear;
-}bagHeader;
+	T		Item[sz];
+	
+	public:
+	
+};
 
 
 // Access
