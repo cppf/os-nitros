@@ -1,5 +1,5 @@
-#ifndef _DATA_QUEUE_H_
-#define _DATA_QUEUE_H_
+#ifndef _DATA_QUEUE_HPP_
+#define _DATA_QUEUE_HPP_
 
 
 // Define
@@ -107,4 +107,4 @@ inline uint queue_RemoveF(Queue* que)
 queue_RemoveF((Queue*)(que))
 
 
-#endif /* _DATA_QUEUE_H_ */
+#endif /* _DATA_QUEUE_HPP_ */

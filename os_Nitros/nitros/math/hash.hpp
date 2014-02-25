@@ -1,5 +1,5 @@
-#ifndef _MATH_HASH_H_
-#define _MATH_HASH_H_
+#ifndef _MATH_HASH_HPP_
+#define _MATH_HASH_HPP_
 
 
 // 8-bit XOR-ROR hashing
@@ -26,4 +26,4 @@ uint8 math_Hash8F(uint8* data, uint size)
 math_Hash8F((uint8*)(data), (uint)(size))
 
 
-#endif /* _MATH_HASH_H_ */
+#endif /* _MATH_HASH_HPP_ */

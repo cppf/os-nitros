@@ -1,5 +1,5 @@
-#ifndef _MATH_BASIC_H_
-#define _MATH_BASIC_H_
+#ifndef _MATH_BASIC_HPP_
+#define _MATH_BASIC_HPP_
 
 
 // Constants
@@ -115,4 +115,4 @@ uword math_Log2(T val)
 (1 << (val))
 
 
-#endif /* _MATH_BASIC_H_ */
+#endif /* _MATH_BASIC_HPP_ */

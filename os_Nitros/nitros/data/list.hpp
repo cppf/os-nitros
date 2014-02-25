@@ -1,5 +1,5 @@
-#ifndef _DATA_LIST_H_
-#define _DATA_LIST_H_
+#ifndef _DATA_LIST_HPP_
+#define _DATA_LIST_HPP_
 
 
 // Define
@@ -88,4 +88,4 @@ uword list_RemoveF(List* lst, uint elem)
 list_RemoveF((List*)(lst), (uint)(elem))
 
 
-#endif /* _DATA_LIST_H_ */
+#endif /* _DATA_LIST_HPP_ */

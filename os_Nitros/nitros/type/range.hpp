@@ -1,5 +1,5 @@
-#ifndef _TYPE_RANGE_H_
-#define _TYPE_RANGE_H_
+#ifndef _TYPE_RANGE_HPP_
+#define _TYPE_RANGE_HPP_
 
 
 // Size-Specified Integers
@@ -80,4 +80,4 @@
 #define ulong_max	uint32_max
 
 
-#endif /* RANGE_H_ */
+#endif /* RANGE_HPP_ */

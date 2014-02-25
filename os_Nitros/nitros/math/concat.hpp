@@ -1,5 +1,5 @@
-#ifndef _MATH_CONCAT_H_
-#define _MATH_CONCAT_H_
+#ifndef _MATH_CONCAT_HPP_
+#define _MATH_CONCAT_HPP_
 
 
 // Integer concatenation
@@ -75,4 +75,4 @@ macro_Fn(macro_Fn8(__VA_ARGS__, math_MakeInt64_8, _7, _6, _5, math_MakeInt64_4, 
 math_MakeInt64
 
 
-#endif /* _MATH_CONCAT_H_ */
+#endif /* _MATH_CONCAT_HPP_ */

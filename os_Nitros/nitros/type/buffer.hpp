@@ -1,9 +1,9 @@
-#ifndef _TYPE_BUFFER_H_
-#define _TYPE_BUFFER_H_
+#ifndef _TYPE_BUFFER_HPP_
+#define _TYPE_BUFFER_HPP_
 
 
 // Basic buffer definition
-template <uint sz>
+template <uint size>
 union buffer
 {
 	int8	Int8[1];
@@ -18,7 +18,7 @@ union buffer
 	uint	Uint[1];
 	word	Word[1];
 	uword	Uword[1];
-	byte	Byte[sz];
+	byte	Byte[size];
 	ubyte	UByte[1];
 	sbyte	Sbyte[1];
 	char	Char[1];
@@ -31,4 +31,4 @@ union buffer
 };
 
 
-#endif /* _TYPE_BUFFER_H_ */
+#endif /* _TYPE_BUFFER_HPP_ */

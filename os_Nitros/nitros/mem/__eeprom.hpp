@@ -1,5 +1,5 @@
-#ifndef _MEM_EEPROM_H_
-#define _MEM_EEPROM_H_
+#ifndef _MEM_EEPROM_HPP_
+#define _MEM_EEPROM_HPP_
 
 
 
@@ -22,4 +22,4 @@ void eeprom_Write()
 }
 
 
-#endif /* _MEM_EEPROM_H_ */
+#endif /* _MEM_EEPROM_HPP_ */

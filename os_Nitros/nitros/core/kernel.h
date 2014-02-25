@@ -1,5 +1,5 @@
-#ifndef _CORE_KERNEL_H_
-#define _CORE_KERNEL_H_
+#ifndef _CORE_KERNEL_HPP_
+#define _CORE_KERNEL_HPP_
 
 
 // Begin a critical section
@@ -29,4 +29,4 @@ void kernel_Scheduler(void)
 }
 
 
-#endif /* _CORE_KERNEL_H_ */
+#endif /* _CORE_KERNEL_HPP_ */

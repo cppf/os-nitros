@@ -1,11 +1,11 @@
-#ifndef _NITROS_H_
-#define _NITROS_H_
+#ifndef _NITROS_HPP_
+#define _NITROS_HPP_
 
 
 // Build Support
-#include "make/macro.h"
-#include "make/merge.h"
-#include "make/constant.h"
+#include "make/macro.hpp"
+#include "make/merge.hpp"
+#include "make/constant.hpp"
 
 
 // Compilation Options
@@ -35,22 +35,22 @@
 
 
 // Include Files
-#include "make/function.h"
-#include "make/attribute.h"
-#include "type/constant.h"
-#include "type/primitive.h"
-#include "type/char.h"
-#include "type/range.h"
-#include "type/buffer.h"
-#include "type/string.h"
-#include "math/concat.h"
-#include "math/basic.h"
-#include "math/bit.h"
-#include "math/hash.h"
-#include "mem/basic.h"
-#include "mem/block.h"
-#include "mem/reg.h"
-#include "data/bag.h"
+#include "make/function.hpp"
+#include "make/attribute.hpp"
+#include "type/constant.hpp"
+#include "type/primitive.hpp"
+#include "type/char.hpp"
+#include "type/range.hpp"
+#include "type/buffer.hpp"
+#include "type/string.hpp"
+#include "math/concat.hpp"
+#include "math/basic.hpp"
+#include "math/bit.hpp"
+#include "math/hash.hpp"
+#include "mem/basic.hpp"
+#include "mem/block.hpp"
+#include "mem/reg.hpp"
+#include "data/bag.hpp"
 /*
 #include "data/list.h"
 #include "data/queue.h"
@@ -59,4 +59,4 @@
 #include "core/kernel.h"
 */
 
-#endif /* _NITROS_H_ */
+#endif /* _NITROS_HPP_ */

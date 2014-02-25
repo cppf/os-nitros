@@ -1,5 +1,5 @@
-#ifndef _MEM_REGISTER_H_
-#define _MEM_REGISTER_H_
+#ifndef _MEM_REGISTER_HPP_
+#define _MEM_REGISTER_HPP_
 
 
 // Define register
@@ -129,4 +129,4 @@ reg_Define16((addr) + 0x20)
 #endif
 
 
-#endif /* _MEM_REGISTER_H_ */
+#endif /* _MEM_REGISTER_HPP_ */

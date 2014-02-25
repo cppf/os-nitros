@@ -1,5 +1,5 @@
-#ifndef	_TYPE_PRIMITIVE_H_
-#define	_TYPE_PRIMITIVE_H_
+#ifndef	_TYPE_PRIMITIVE_HPP_
+#define	_TYPE_PRIMITIVE_HPP_
 
 
 // Size-Specified Integers
@@ -41,4 +41,4 @@ typedef unsigned int	uint;
 typedef unsigned long	ulong;
 
 
-#endif /* _TYPE_PRIMITIVE_H_ */
+#endif /* _TYPE_PRIMITIVE_HPP_ */

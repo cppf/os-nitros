@@ -1,5 +1,5 @@
-#ifndef _MAKE_FUNCTION_H_
-#define _MAKE_FUNCTION_H_
+#ifndef _MAKE_FUNCTION_HPP_
+#define _MAKE_FUNCTION_HPP_
 
 
 // Macros: typeOf
@@ -37,4 +37,4 @@ __asm__ __volatile__
 text "\n\t"
 
 
-#endif /* _MAKE_FUNCTION_H_ */
+#endif /* _MAKE_FUNCTION_HPP_ */

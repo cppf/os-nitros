@@ -1,5 +1,5 @@
-#ifndef _TYPE_STRING_H_
-#define _TYPE_STRING_H_
+#ifndef _TYPE_STRING_HPP_
+#define _TYPE_STRING_HPP_
 
 
 // Definition
@@ -51,4 +51,4 @@ string_Copy((str)+(start), (str)+(stop))
 macro_Fn(macro_Fn3(__VA_ARGS__, string_Remove3, string_Remove2)(__VA_ARGS__))
 
 
-#endif /* _TYPE_STRING_H_ */
+#endif /* _TYPE_STRING_HPP_ */

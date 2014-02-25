@@ -1,5 +1,5 @@
-#ifndef _MAKE_MERGE_H_
-#define _MAKE_MERGE_H_
+#ifndef _MAKE_MERGE_HPP_
+#define _MAKE_MERGE_HPP_
 
 
 // Merge tokens together
@@ -23,4 +23,4 @@
 macro_Fn(macro_Fn16(__VA_ARGS__, merge16, merge15, merge14, merge13, merge12, merge11, merge10, merge9, merge8, merge7, merge6, merge5, merge4, merge3, merge2)(__VA_ARGS__))
 
 
-#endif /* _MAKE_MERGE_H_ */
+#endif /* _MAKE_MERGE_HPP_ */

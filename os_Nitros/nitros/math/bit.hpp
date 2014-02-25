@@ -1,5 +1,5 @@
-#ifndef _MATH_BIT_H_
-#define _MATH_BIT_H_
+#ifndef _MATH_BIT_HPP_
+#define _MATH_BIT_HPP_
 
 
 // ValueByOnes
@@ -70,4 +70,4 @@ bit_Clear
 bit_Write
 
 
-#endif /* _MATH_BIT_H_ */
+#endif /* _MATH_BIT_HPP_ */

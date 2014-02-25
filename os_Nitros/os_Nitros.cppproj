@@ -135,73 +135,73 @@
     <Compile Include="nitros\core\task.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\data\bag.h">
+    <Compile Include="nitros\data\bag.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\data\list.h">
+    <Compile Include="nitros\data\list.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\data\queue.h">
+    <Compile Include="nitros\data\queue.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\make\attribute.h">
+    <Compile Include="nitros\make\attribute.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\make\constant.h">
+    <Compile Include="nitros\make\constant.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\make\function.h">
+    <Compile Include="nitros\make\function.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\make\macro.h">
+    <Compile Include="nitros\make\macro.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\make\merge.h">
+    <Compile Include="nitros\make\merge.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\math\basic.h">
+    <Compile Include="nitros\math\basic.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\math\bit.h">
+    <Compile Include="nitros\math\bit.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\math\concat.h">
+    <Compile Include="nitros\math\concat.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\math\hash.h">
+    <Compile Include="nitros\math\hash.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\mem\basic.h">
+    <Compile Include="nitros\mem\basic.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\mem\block.h">
+    <Compile Include="nitros\mem\block.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\mem\__eeprom.h">
+    <Compile Include="nitros\mem\__eeprom.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\mem\reg.h">
+    <Compile Include="nitros\mem\reg.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\nitros.h">
+    <Compile Include="nitros\nitros.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\type\buffer.h">
+    <Compile Include="nitros\type\buffer.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\type\char.h">
+    <Compile Include="nitros\type\char.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\type\constant.h">
+    <Compile Include="nitros\type\constant.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\type\primitive.h">
+    <Compile Include="nitros\type\primitive.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\type\range.h">
+    <Compile Include="nitros\type\range.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\type\string.h">
+    <Compile Include="nitros\type\string.hpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="os_Nitros.cpp">

@@ -1,5 +1,5 @@
-#ifndef _CORE_SEM_H_
-#define _CORE_SEM_H_
+#ifndef _CORE_SEM_HPP_
+#define _CORE_SEM_HPP_
 
 
 // Define
@@ -38,4 +38,4 @@ sem_Signal
 (*(sem) > 0)
 
 
-#endif /* _CORE_SEM_H_ */
+#endif /* _CORE_SEM_HPP_ */

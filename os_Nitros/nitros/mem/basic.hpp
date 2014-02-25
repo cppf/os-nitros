@@ -1,5 +1,5 @@
-#ifndef _MEM_BASIC_H_
-#define _MEM_BASIC_H_
+#ifndef _MEM_BASIC_HPP_
+#define _MEM_BASIC_HPP_
 
 
 #define mem(base, off)	\
@@ -25,4 +25,4 @@ macro_End
 macro_Fn(macro_Fn3(__VA_ARGS__, mem_Swap3, mem_Swap2)(__VA_ARGS__))
 
 
-#endif /* _MEM_BASIC_H_ */
+#endif /* _MEM_BASIC_HPP_ */

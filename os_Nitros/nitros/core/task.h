@@ -1,5 +1,5 @@
-#ifndef _CORE_TASK_H_
-#define _CORE_TASK_H_
+#ifndef _CORE_TASK_HPP_
+#define _CORE_TASK_HPP_
 
 
 // Define
@@ -363,4 +363,4 @@ void task_SemReleaseF(Sem* sem)
 task_SemReleaseF((Sem*)(sem))
 
 
-#endif /* _CORE_TASK_H_ */
+#endif /* _CORE_TASK_HPP_ */

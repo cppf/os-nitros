@@ -1,5 +1,5 @@
-#ifndef _MEM_BLOCK_H_
-#define _MEM_BLOCK_H_
+#ifndef _MEM_BLOCK_HPP_
+#define _MEM_BLOCK_HPP_
 
 
 // Functions
@@ -53,4 +53,4 @@ mem_IndexOfF((byte*)(block), (uword)(block_no), (byte*)(data), (uint)(data_sz))
 mem_IndexOf
 
 
-#endif /* _MEM_BLOCK_H_ */
+#endif /* _MEM_BLOCK_HPP_ */

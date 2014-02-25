@@ -1,4 +1,4 @@
-#include "nitros/nitros.h"
+#include "nitros/nitros.hpp"
 
 int main(void)
 {

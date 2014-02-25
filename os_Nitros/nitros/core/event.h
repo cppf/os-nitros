@@ -1,5 +1,5 @@
-#ifndef _CORE_EVENT_H_
-#define _CORE_EVENT_H_
+#ifndef _CORE_EVENT_HPP_
+#define _CORE_EVENT_HPP_
 
 
 // Define event handler
@@ -23,4 +23,4 @@ event_Set(obj, evnt, null)
 event_Clear
 
 
-#endif /* _CORE_EVENT_H_ */
+#endif /* _CORE_EVENT_HPP_ */

@@ -1,5 +1,5 @@
-#ifndef _TYPE_CONSTANT_H_
-#define _TYPE_CONSTANT_H_
+#ifndef _TYPE_CONSTANT_HPP_
+#define _TYPE_CONSTANT_HPP_
 
 
 #ifndef null
@@ -12,4 +12,4 @@
 #endif
 
 
-#endif /* _TYPE_CONSTANT_H_ */
+#endif /* _TYPE_CONSTANT_HPP_ */
