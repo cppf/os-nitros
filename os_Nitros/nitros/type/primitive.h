@@ -14,20 +14,19 @@ typedef	unsigned long long	uint64;
 
 
 // CPU Word Size Integer
+#ifndef word
 #if cpu_word_size == 8
-#if platform_name != platform_arduino
 typedef	int8	word;
-#endif
-typedef uint8	uword;
 #elif cpu_word_size == 16
 typedef	int16	word;
-typedef uint16	uword;
-#elif cpu_word_size == 64
-typedef	int32	word;
-typedef uint32	uword;
-#elif cpu_word_size == 64
-typedef	int64	word;
-typedef uint64	uword;
+#endif
+#endif
+#ifndef uword
+#if cpu_word_size == 8
+typedef	uint8	uword;
+#elif cpu_word_size == 16
+typedef	uint16	uword;
+#endif
 #endif
 
 

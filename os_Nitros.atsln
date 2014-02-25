@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Atmel Studio Solution File, Format Version 11.00
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "os_Nitros", "os_Nitros\os_Nitros.cproj", "{4B4402D0-2296-4739-B8D9-B72B35741072}"
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "os_Nitros", "os_Nitros\os_Nitros.cppproj", "{9E1BE944-5EAD-43B5-B448-F17F55452D55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|AVR = Release|AVR
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4B4402D0-2296-4739-B8D9-B72B35741072}.Debug|AVR.ActiveCfg = Debug|AVR
-		{4B4402D0-2296-4739-B8D9-B72B35741072}.Debug|AVR.Build.0 = Debug|AVR
-		{4B4402D0-2296-4739-B8D9-B72B35741072}.Release|AVR.ActiveCfg = Release|AVR
-		{4B4402D0-2296-4739-B8D9-B72B35741072}.Release|AVR.Build.0 = Release|AVR
+		{9E1BE944-5EAD-43B5-B448-F17F55452D55}.Debug|AVR.ActiveCfg = Debug|AVR
+		{9E1BE944-5EAD-43B5-B448-F17F55452D55}.Debug|AVR.Build.0 = Debug|AVR
+		{9E1BE944-5EAD-43B5-B448-F17F55452D55}.Release|AVR.ActiveCfg = Release|AVR
+		{9E1BE944-5EAD-43B5-B448-F17F55452D55}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

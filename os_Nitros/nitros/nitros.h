@@ -1,5 +1,5 @@
-#ifndef _RTOS_H_
-#define _RTOS_H_
+#ifndef _NITROS_H_
+#define _NITROS_H_
 
 
 // Build Support
@@ -59,4 +59,4 @@
 #include "core/kernel.h"
 */
 
-#endif /* _RTOS_H_ */
+#endif /* _NITROS_H_ */
