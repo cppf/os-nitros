@@ -50,9 +50,9 @@
 #include "mem/basic.hpp"
 #include "mem/block.hpp"
 #include "mem/reg.hpp"
-#include "data/bag.hpp"
+#include "data/list.hpp"
+#include "data/queue.hpp"
 /*
-#include "data/list.h"
 #include "data/queue.h"
 #include "core/sem.h"
 #include "core/task.h"

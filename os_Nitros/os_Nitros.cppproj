@@ -135,13 +135,10 @@
     <Compile Include="nitros\core\task.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\data\bag.hpp">
+    <Compile Include="nitros\data\queue.hpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="nitros\data\list.hpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="nitros\data\queue.hpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="nitros\make\attribute.hpp">
