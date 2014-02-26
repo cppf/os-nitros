@@ -46,6 +46,20 @@ public:
 		Count = Front = 0;
 	}
 	
+	inline T* NewFront()
+	{
+		Count++;
+		Front = (Front - 1) & (size - 1);
+		return Item + Front;
+	}
+	
+	inline T* NewRear()
+	{
+		T* item_ptr = Item + Rear();
+		Count++;
+		return item_ptr;
+	}
+	
 	inline void PushFront(T item)
 	{
 		Count++;
@@ -59,17 +73,27 @@ public:
 		Count++;
 	}
 	
+	inline void RemoveFront()
+	{
+		Front = (Front + 1) & (size - 1);
+		Count--;
+	}
+	
+	inline void RemoveRear()
+	{
+		Count--;
+	}
+	
 	inline void PopFront()
 	{
 		T item = Item[Front];
-		Front = (Front + 1) & (size - 1);
-		Count--;
+		RemoveFront();
 		return item;
 	}
 	
 	inline void PopRear()
 	{
-		Count--;
+		RemoveRear();
 		return Item[Rear()];
 	}
 	

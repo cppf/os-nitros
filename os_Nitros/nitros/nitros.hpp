@@ -54,8 +54,8 @@
 #include "data/queue.hpp"
 #include "core/context.hpp"
 /*
+#include "core/task.hpp"
 #include "core/sem.h"
-#include "core/task.h"
 #include "core/kernel.h"
 */
 

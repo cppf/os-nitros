@@ -2,7 +2,6 @@
 #define _CORE_TASK_HPP_
 
 
-
 // Status
 #define task_unstarted			0x00
 #define	task_completed			0xF0
@@ -33,8 +32,27 @@ class task
 typedef void (*taskFnPtr)(task*);
 
 
-// Initialize
-#define task_InitF(tsk, addr, data)	\
+// Task lists
+list<task, 32> task_All;
+queue<task*, 16> task_ReadyHigh;
+queue<task*, 32> task_ReadyMed;
+queue<task*, 16> task_ReadyLow;
+task* task_Running;
+
+
+
+// Add
+void task_Add(void* addr, void* data, uword priority)
+{
+	switch(priority)
+	{
+	case 0:
+		task_ReadyLow.PushRear()
+		break;
+	}
+	
+}
+// #define task_Add(addr, data, priority)	\
 macro_Begin	\
 (tsk)->Addr = addr;	\
 (tsk)->Data = data;	\

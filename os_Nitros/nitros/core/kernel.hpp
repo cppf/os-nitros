@@ -12,11 +12,6 @@ cli()
 sei()
 
 
-queue<task*, 16> kernel_ReadyHigh;
-queue<task*, 16> kernel_ReadyMed;
-queue<task*, 16> kernel_ReadyLow;
-task* kernel_Running;
-
 
 void kernel_Scheduler(void);
 void kernel_Scheduler(void)
