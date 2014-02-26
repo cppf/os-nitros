@@ -123,16 +123,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="nitros\core\event.h">
+    <Compile Include="nitros\core\event.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\core\kernel.h">
+    <Compile Include="nitros\core\kernel.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\core\sem.h">
+    <Compile Include="nitros\core\sem.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\core\task.h">
+    <Compile Include="nitros\core\task.hpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="nitros\data\queue.hpp">

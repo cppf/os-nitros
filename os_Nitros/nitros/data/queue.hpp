@@ -5,12 +5,12 @@
 template <typename T, uword size>
 class queue
 {
-	public:
+public:
 	uword	Count;
 	uword	Front;
 	T		Item[size];
 	
-	public:
+public:
 	inline uword Size()
 	{
 		return size;

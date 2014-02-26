@@ -2,7 +2,7 @@
 #define _CORE_TASK_HPP_
 
 
-// Define
+
 #define	task_Define(sz)	\
 typedef	struct _Task##sz	\
 {	\
