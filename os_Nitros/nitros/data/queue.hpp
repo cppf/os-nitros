@@ -61,13 +61,16 @@ public:
 	
 	inline void PopFront()
 	{
+		T item = Item[Front];
 		Front = (Front + 1) & (size - 1);
 		Count--;
+		return item;
 	}
 	
 	inline void PopRear()
 	{
 		Count--;
+		return Item[Rear()];
 	}
 	
 	uword IndexOf(T item)

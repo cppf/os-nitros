@@ -123,6 +123,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="nitros\core\context.hpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="nitros\core\event.hpp">
       <SubType>compile</SubType>
     </Compile>

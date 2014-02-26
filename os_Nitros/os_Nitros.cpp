@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    while(1)
+    while(true)
     {
         //TODO:: Please write your application code 
     }

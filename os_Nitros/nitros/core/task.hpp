@@ -3,60 +3,6 @@
 
 
 
-#define	task_Define(sz)	\
-typedef	struct _Task##sz	\
-{	\
-	void*	Addr;	\
-	uint	Data;	\
-	Sem*	Block;	\
-	uword	State;	\
-	byte	Store[sz];	\
-}Task##sz
-
-
-// Header
-typedef struct _task_Header
-{
-	void*	Addr;
-	uint	Data;
-	Sem*	Block;
-	uword	State;
-}task_Header;
-
-typedef task_Header Task0;
-
-typedef void (*task_FnPtr)(void);
-
-
-// Default
-task_Define(1);
-task_Define(2);
-task_Define(4);
-task_Define(8);
-task_Define(16);
-task_Define(32);
-
-#ifndef task_Default
-#define	task_Default	Task2
-#endif
-
-typedef task_Default	Task;
-
-
-// Task maintenance
-#ifndef task_QueueType
-#define task_QueueType	Queue16
-#endif
-
-#ifndef task_BagType
-#define task_BagType	Bag16
-#endif
-
-Task*	task_Current;
-task_QueueType	task_Ready;
-task_BagType	task_Blocked;
-
-
 // Status
 #define task_unstarted			0x00
 #define	task_completed			0xF0
@@ -64,6 +10,27 @@ task_BagType	task_Blocked;
 #define task_released			0x60
 #define	task_yielded			0x50
 #define	task_waiting			0x40
+
+
+class task
+{
+	public:
+	void*	Addr;
+	void*	Data;
+	void*	Stack;
+	uword	State;
+	uword	Priority;
+	
+	public:
+	inline uword IsBlocked()
+	{
+		return State == task_blocked;
+	}
+};
+
+
+// Task function pointer
+typedef void (*taskFnPtr)(task*);
 
 
 // Initialize
@@ -93,8 +60,7 @@ macro_End
 
 // Define a task function
 #define	task_Fn(name)	\
-void name(void);	\
-void name(void)
+void name(task* task_Obj)
 
 
 // Save task state to a buffer

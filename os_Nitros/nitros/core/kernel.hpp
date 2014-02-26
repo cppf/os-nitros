@@ -12,19 +12,21 @@ cli()
 sei()
 
 
+queue<task*, 16> kernel_ReadyHigh;
+queue<task*, 16> kernel_ReadyMed;
+queue<task*, 16> kernel_ReadyLow;
+task* kernel_Running;
+
 
 void kernel_Scheduler(void);
 void kernel_Scheduler(void)
 {
 	while(true)
 	{
-		if(queue_HasAvail(&task_Ready))
-		{
-			task_Current = (Task*) queue_Remove(&task_Ready);
-			((task_FnPtr) task_Current->Addr)();
-			if(task_Current->State == task_blocked) bag_Add(&task_Blocked, task_Current);
-			else queue_Add(&task_Ready, task_Current);
-		}
+		if(kernel_ReadyHigh.Avail()) kernel_Running = kernel_ReadyHigh.PopFront();
+		else if(kernel_ReadyMed.Avail()) kernel_Running = kernel_ReadyMed.PopFront();
+		else if(kernel_ReadyLow.Avail()) kernel_Running = kernel_ReadyLow.PopFront();
+		
 	}
 }
 
