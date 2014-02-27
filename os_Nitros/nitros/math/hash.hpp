@@ -15,7 +15,7 @@ uint8 math_Hash8F(uint8* data, uint size)
 		line("lsr %0")
 		line("bld %0, 7")
 		: "=r"(hash)
-		:
+		: "r"(hash)
 		:
 		);
 	}

@@ -73,13 +73,13 @@ public:
 		Count++;
 	}
 	
-	inline void RemoveFront()
+	inline void DeleteFront()
 	{
 		Front = (Front + 1) & (size - 1);
 		Count--;
 	}
 	
-	inline void RemoveRear()
+	inline void DeleteRear()
 	{
 		Count--;
 	}
@@ -87,13 +87,13 @@ public:
 	inline void PopFront()
 	{
 		T item = Item[Front];
-		RemoveFront();
+		DeleteFront();
 		return item;
 	}
 	
 	inline void PopRear()
 	{
-		RemoveRear();
+		DeleteRear();
 		return Item[Rear()];
 	}
 	
@@ -115,7 +115,7 @@ public:
 		Item[index] = item;
 	}
 	
-	inline void RemoveAt(uword index)
+	inline void DeleteAt(uword index)
 	{
 		Item[index] = Item[Front];
 		PopFront();
@@ -124,7 +124,7 @@ public:
 	inline void Remove(T item)
 	{
 		uword index = IndexOf(item);
-		if(index != (uword) -1) RemoveAt(index);
+		if(index != (uword) -1) DeleteAt(index);
 	}
 };
 

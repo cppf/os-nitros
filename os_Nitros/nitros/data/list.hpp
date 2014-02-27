@@ -32,6 +32,13 @@ public:
 		Count = Front = 0;
 	}
 	
+	inline T* New()
+	{
+		T* item_ptr = Item + Count;
+		Count++;
+		return item_ptr;
+	}
+	
 	inline void Add(T item)
 	{
 		Item[Count] = item;
@@ -56,7 +63,7 @@ public:
 		Item[index] = item;
 	}
 	
-	inline void RemoveAt(uword index)
+	inline void DeleteAt(uword index)
 	{
 		Item[index] = Item[Count];
 		Count--;
@@ -65,7 +72,7 @@ public:
 	inline void Remove(T item)
 	{
 		uword index = IndexOf(item);
-		if(index != (uword) -1) RemoveAt(index);
+		if(index != (uword) -1) DeleteAt(index);
 	}
 };
 

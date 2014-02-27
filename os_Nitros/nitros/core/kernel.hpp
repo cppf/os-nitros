@@ -18,9 +18,9 @@ void kernel_Scheduler(void)
 {
 	while(true)
 	{
-		if(kernel_ReadyHigh.Avail()) kernel_Running = kernel_ReadyHigh.PopFront();
-		else if(kernel_ReadyMed.Avail()) kernel_Running = kernel_ReadyMed.PopFront();
-		else if(kernel_ReadyLow.Avail()) kernel_Running = kernel_ReadyLow.PopFront();
+		if(task_ReadyHigh.Avail()) task_Running = task_ReadyHigh.PopFront();
+		else if(task_ReadyMed.Avail()) task_Running = task_ReadyMed.PopFront();
+		else if(task_ReadyLow.Avail()) task_Running = task_ReadyLow.PopFront();
 		
 	}
 }

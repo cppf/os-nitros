@@ -33,25 +33,58 @@ typedef void (*taskFnPtr)(task*);
 
 
 // Task lists
-list<task, 32> task_All;
+list<task, 16> task_All;
 queue<task*, 16> task_ReadyHigh;
-queue<task*, 32> task_ReadyMed;
+queue<task*, 16> task_ReadyMed;
 queue<task*, 16> task_ReadyLow;
 task* task_Running;
 
+/*
+// Priority-based push
+void (queue<task*, 16>::*task_PriorityPushFn[])(task*) =
+{&queue<task*, 16>::PushRear, &queue<task*, 16>::PushFront};
 
+queue<task*, 16> *task_PriorityPushObj[] =
+{&task_ReadyLow, &task_ReadyLow, &task_ReadyMed, &task_ReadyMed, &task_ReadyHigh, &task_ReadyHigh};
+*/
 
 // Add
 void task_Add(void* addr, void* data, uword priority)
 {
+	task* tsk = task_All.New();
+	tsk->Addr = addr;
+	tsk->Data = data;
+	tsk->Stack = null;
+	tsk->State = task_unstarted;
+	tsk->Priority = priority;
+	// queue<task*, 16> *fnptr = task_PriorityPushObj[priority];
+	// (task_PriorityPushObj[priority]->*task_PriorityPushFn[priority & 1])(tsk);
+
 	switch(priority)
 	{
 	case 0:
-		task_ReadyLow.PushRear()
+		task_ReadyLow.PushRear(tsk);
+		break;
+	case 1:
+		task_ReadyLow.PushFront(tsk);
+		break;
+	case 2:
+		task_ReadyMed.PushRear(tsk);
+		break;
+	case 3:
+		task_ReadyMed.PushFront(tsk);
+		break;
+	case 4:
+		task_ReadyHigh.PushRear(tsk);
+		break;
+	case 5:
+		task_ReadyHigh.PushFront(tsk);
 		break;
 	}
 	
 }
+
+/*
 // #define task_Add(addr, data, priority)	\
 macro_Begin	\
 (tsk)->Addr = addr;	\
@@ -345,6 +378,6 @@ void task_SemReleaseF(Sem* sem)
 
 #define task_SemRelease(sem)	\
 task_SemReleaseF((Sem*)(sem))
-
+*/
 
 #endif /* _CORE_TASK_HPP_ */
