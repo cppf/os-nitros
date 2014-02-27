@@ -21,20 +21,4 @@
 mem_Set(dst, size, 0)
 
 
-// IndexOf
-uword mem_IndexOfF(byte* block, uword block_no, byte* data, uint data_sz);
-uword mem_IndexOfF(byte* block, uword block_no, byte* data, uint data_sz)
-{
-	for(uword i=0; i < block_no; block+=data_sz, i++)
-		if(mem_Compare(block, data, data_sz) == 0) return i;
-	return (uword) -1;
-}
-
-#define mem_IndexOf(block, block_no, data, data_sz)	\
-mem_IndexOfF((byte*)(block), (uword)(block_no), (byte*)(data), (uint)(data_sz))
-
-#define mem_Find	\
-mem_IndexOf
-
-
 #endif /* _MEM_BLOCK_HPP_ */
