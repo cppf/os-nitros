@@ -1,9 +1,8 @@
 #include "nitros/nitros.hpp"
+using namespace data;
 
 int main(void)
 {
-	using namespace data;
-	buffer<16> a;
     while(true)
     {
         //TODO:: Please write your application code 
