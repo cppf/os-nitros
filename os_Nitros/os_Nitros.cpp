@@ -1,6 +1,5 @@
 #include "nitros/nitros.hpp"
 
-// use namespacing
 int main(void)
 {
     while(true)
