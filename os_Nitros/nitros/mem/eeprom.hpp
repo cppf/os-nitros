@@ -5,45 +5,42 @@
 namespace mem
 {
 
-// EEPROM Task
-struct eeprom_task 
+class eeprom
 {
-	void*	Dest;
-	void*	Src;
-	uint	Size;
+	struct task
+	{
+		void*	Dest;
+		void*	Src;
+		uint	Size;
+	};
+	
+	private:
+	queue<task, 16> Tasks;
+	
+	private:
+	void eeprom_Isr()
+	{
+		eeprom_Handler();
+	}
+	
+	void eeprom_Handler()
+	{
+	
+	}
+	
+	public:
+	void eeprom_Read(void* dest, void* src, uint size)
+	{
+		// Check if queue is already full or not, if yes, block
+		eeprom_TaskList.PushRear();
+	}
+	
+	void eeprom_Write(void* dest, void* src, uint size)
+	{
+	
+	}
 };
 
-
-// EEPROM Task Queue
-queue<eeprom_task, 16> eeprom_TaskList;
-
-
-// EEPROM Service Routines
-void eeprom_Isr()
-{
-	eeprom_Handler();
-}
-
-void eeprom_Handler()
-{
-	
-}
-
-
-// EEPROM Read Data
-void eeprom_Read(void* dest, void* src, uint size)
-{
-	// Check if queue is already full or not, if yes, block
-	eeprom_TaskList.PushRear();
-}
-
-
-// EEPROM Write Data
-void eeprom_Write(void* dest, void* src, uint size)
-{
-	
-}
-	
 } // end (namespace) mem
 
 
