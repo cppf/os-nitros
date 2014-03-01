@@ -1,11 +1,14 @@
 #include "nitros/nitros.hpp"
 using namespace data;
 
+list<int, 8> List;
+
 int main(void)
 {
-	// time to know the mechanism of queue
     while(true)
     {
-        //TODO:: Please write your application code 
-    }
+		List.Add(10);
+		List.DeleteAt(0);
+		*address(&List, 2) = 0;
+	}
 }
