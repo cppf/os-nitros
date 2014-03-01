@@ -1,6 +1,6 @@
 #include "nitros/nitros.hpp"
 
-// code size reduced to 684 bytes
+// use namespacing
 int main(void)
 {
     while(true)
