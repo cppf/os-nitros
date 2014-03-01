@@ -2,6 +2,9 @@
 #define _MEM_EEPROM_HPP_
 
 
+namespace mem
+{
+
 // EEPROM Task
 struct eeprom_task 
 {
@@ -40,6 +43,8 @@ void eeprom_Write(void* dest, void* src, uint size)
 {
 	
 }
+	
+} // end (namespace) mem
 
 
 #endif /* _MEM_EEPROM_HPP_ */
