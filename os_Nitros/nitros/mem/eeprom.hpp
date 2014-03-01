@@ -18,26 +18,27 @@ class eeprom
 	queue<task, 16> Tasks;
 	
 	private:
-	void eeprom_Isr()
+	void _Isr()
 	{
-		eeprom_Handler();
+		_Handler();
 	}
 	
-	void eeprom_Handler()
+	void _Handler()
 	{
-	
+		
 	}
 	
 	public:
-	void eeprom_Read(void* dest, void* src, uint size)
+	void Read(void* dest, void* src, uint size)
 	{
 		// Check if queue is already full or not, if yes, block
-		eeprom_TaskList.PushRear();
+		task tsk = {dest, src, size};
+		Tasks.PushRear(tsk);
 	}
 	
-	void eeprom_Write(void* dest, void* src, uint size)
+	void Write(void* dest, void* src, uint size)
 	{
-	
+		task tsk = {dest, src, size};
 	}
 };
 
