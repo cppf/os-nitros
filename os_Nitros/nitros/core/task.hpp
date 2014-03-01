@@ -1,5 +1,6 @@
 #ifndef _CORE_TASK_HPP_
 #define _CORE_TASK_HPP_
+using namespace data;
 
 
 // Status
