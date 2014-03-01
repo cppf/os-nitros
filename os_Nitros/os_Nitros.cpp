@@ -1,7 +1,7 @@
 #include "nitros/nitros.hpp"
 using namespace data;
 
-list<int, 8> List;
+list<uword, 8> List;
 
 int main(void)
 {
