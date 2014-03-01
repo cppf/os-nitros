@@ -2,7 +2,7 @@
 #define _MEM_BASIC_HPP_
 
 
-#define mem(base, off)	\
+#define address(base, off)	\
 (((char*)(base)) + (off))
 
 
@@ -22,7 +22,7 @@ a ^= b;	\
 macro_End
 
 #define	swap(...)	\
-macro_Fn(macro_Fn3(__VA_ARGS__, mem_Swap3, mem_Swap2)(__VA_ARGS__))
+macro_Fn(macro_Fn3(__VA_ARGS__, swap3, swap2)(__VA_ARGS__))
 
 
 #endif /* _MEM_BASIC_HPP_ */
