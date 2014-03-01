@@ -3,9 +3,7 @@ using namespace data;
 
 struct bigone
 {
-	long a;
-	long b;
-	long c;
+	uword a;
 };
 
 list<bigone, 8> List;
@@ -16,8 +14,6 @@ int main(void)
     {
 		bigone a;
 		a.a = 10;
-		a.b = 11;
-		a.c = 12;
 		List.Add(a);
 		List.DeleteAt(0);
 		*address(&List, 2) = 0;
