@@ -4,6 +4,7 @@
 
 namespace mem
 {
+using namespace data;
 
 class eeprom
 {
