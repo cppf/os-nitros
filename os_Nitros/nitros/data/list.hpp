@@ -2,6 +2,8 @@
 #define _DATA_LIST_HPP_
 
 
+namespace data
+{
 
 template <typename T, uword size>
 class list
@@ -75,6 +77,8 @@ public:
 		if(index != (uword) -1) DeleteAt(index);
 	}
 };
+
+} // end (namespace) data
 
 
 #endif /* _DATA_LIST_HPP_ */

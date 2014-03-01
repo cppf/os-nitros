@@ -33,7 +33,7 @@ union buffer
 	double	Double[1];
 };
 
-}	// end (namespace) data
+} // end (namespace) data
 
 
 #endif /* _DATA_BUFFER_HPP_ */
