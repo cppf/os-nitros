@@ -141,6 +141,9 @@
     <Compile Include="nitros\core\task.hpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="nitros\data\buffer.hpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="nitros\data\queue.hpp">
       <SubType>compile</SubType>
     </Compile>
@@ -187,9 +190,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="nitros\nitros.hpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="nitros\type\buffer.hpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="nitros\type\char.hpp">

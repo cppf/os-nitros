@@ -1,6 +1,9 @@
-#ifndef _TYPE_BUFFER_HPP_
-#define _TYPE_BUFFER_HPP_
+#ifndef _DATA_BUFFER_HPP_
+#define _DATA_BUFFER_HPP_
 
+
+namespace data
+{
 
 // Basic buffer definition
 template <uint size>
@@ -30,5 +33,7 @@ union buffer
 	double	Double[1];
 };
 
+}	// end (namespace) data
 
-#endif /* _TYPE_BUFFER_HPP_ */
+
+#endif /* _DATA_BUFFER_HPP_ */
