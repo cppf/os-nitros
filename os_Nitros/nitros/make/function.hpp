@@ -3,7 +3,7 @@
 
 
 // Macros: typeOf
-#if compiler_name != compiler_gcc
+#if compiler_NAME != compiler_GCC
 	#define typeOf(expr)	\
 	decltype(expr)
 #else

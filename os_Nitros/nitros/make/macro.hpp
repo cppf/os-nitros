@@ -33,7 +33,7 @@
 
 // Macro Beginning and Ending
 // return only supported in GCC
-#if compiler_name != compiler_gcc
+#if compiler_NAME != compiler_GCC
 	#define	macro_Begin	\
 	do{
 	

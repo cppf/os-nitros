@@ -9,27 +9,27 @@
 
 
 // Compilation Options
-#define platform_name		platform_avr
-#define compiler_name		compiler_gcc
-#define cpu_word_size		8
-#define cpu_clock_freq		16000000
+#define platform_NAME		platform_AVR
+#define compiler_NAME		compiler_GCC
+#define cpu_WORD_SIZE		8
+#define cpu_CLOCK_FREQ		16000000
 
 
 // Sizes of RAM, Flash
-#define ram_size	(RAMEND + 1)
-#define flash_size	(FLASHEND + 1)
+#define ram_SIZE	(RAMEND + 1)
+#define flash_SIZE	(FLASHEND + 1)
 
 
 // Platform Files
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#if platform_name == platform_avr || platform_name == platform_arduino
+#if platform_NAME == platform_AVR || platform_NAME == platform_ARDUINO
 #include <avr/io.h>
 #include <avr/portpins.h>
 #include <avr/interrupt.h>
 #endif
-#if platform_name == platform_arduino
+#if platform_NAME == platform_ARDUINO
 #include <Arduino.h>
 #endif
 
