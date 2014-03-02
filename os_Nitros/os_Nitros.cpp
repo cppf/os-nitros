@@ -1,6 +1,7 @@
 #include "nitros/nitros.hpp"
 using namespace data;
 
+// async operation is complicated
 struct bigone
 {
 	uint a;
