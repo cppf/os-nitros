@@ -1,8 +1,8 @@
 #ifndef _CORE_CONTEXT_HPP_
 #define _CORE_CONTEXT_HPP_
 
-uint context_BaseStack;
-uint context_TaskStack;
+uint base_Stack;
+uint task_Stack;
 
 void context_Save(void);
 void context_Save(void)
@@ -43,16 +43,16 @@ void context_Save(void)
 	line("push r30")
 	line("push r31")
 	);
-	context_TaskStack = SP;
-	SP = context_BaseStack;
+	task_Stack = SP;
+	SP = base_Stack;
 }
 
 
 void context_Load(void);
 void context_Load(void)
 {
-	context_BaseStack = SP;
-	SP = context_TaskStack;
+	base_Stack = SP;
+	SP = task_Stack;
 	assembly(
 	line("pop r31")
 	line("pop r30")

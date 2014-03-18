@@ -3,19 +3,19 @@
 
 
 // Define
-typedef word Sem;
+typedef word sem;
 
 
 // Initialize
-#define sem_Init(sem, start)	\
-(*(sem) = (start))
+#define sem_Init(semp, start)	\
+(*(semp) = (start))
 
 
 // Wait
-#define sem_Wait(sem)	\
+#define sem_Wait(semp)	\
 macro_Begin	\
-*(sem)--;	\
-if(*(sem) < 0) task_SemBlock(sem);	\
+*(semp)--;	\
+if(*(semp) < 0) task_SemBlock(semp);	\
 macro_End
 
 #define sem_Take	\
@@ -23,10 +23,10 @@ sem_Wait
 
 
 // Signal
-#define sem_Signal(sem)	\
+#define sem_Signal(semp)	\
 macro_Begin	\
-*(sem)++;	\
-if(*(sem) <= 0) task_SemRelease(sem);	\
+*(semp)++;	\
+if(*(semp) <= 0) task_SemRelease(semp);	\
 macro_End
 
 #define sem_Give	\
@@ -34,8 +34,8 @@ sem_Signal
 
 
 // Check if free to use (Raw)
-#define sem_IsFree(sem)	\
-(*(sem) > 0)
+#define sem_IsFree(semp)	\
+(*(semp) > 0)
 
 
 #endif /* _CORE_SEM_HPP_ */
