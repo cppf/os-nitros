@@ -34,13 +34,6 @@ public:
 		Count = Front = 0;
 	}
 	
-	inline T* New()
-	{
-		T* item_ptr = Item + Count;
-		Count++;
-		return item_ptr;
-	}
-	
 	inline void Add(T item)
 	{
 		Item[Count] = item;
@@ -49,13 +42,8 @@ public:
 	
 	uword IndexOf(T item)
 	{
-		uword index = 0;
-		uword count = Count;
-		for(; count > 0; count--)
-		{
-			if(Item[index] == item) return index;
-			index++;
-		}
+		for(uword i=0, n=Count; n>0; i++, n--)
+			if(Item[i] == item) return i;
 		return (uword) -1;
 	}
 	
