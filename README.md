@@ -7,25 +7,25 @@ A simple, easy to use OS for AVR microcontrollers.
 
 ### Design requirements
 
-1.  Minimal simple, and yet a strong OS concept
+1.  Minimal simple, and yet a relatively strong OS concept
 
-2.  Ensure minimal RAM overhead (Flash overhead is a non-issue)
+2.  Try to minimize RAM overhead (Flash overhead is a non-issue)
 
-3.  Ensure proper event handling, and fast execution.
+3.  Try proper event handling, and fast execution.
 
-4.  Support driver installation and removel.
+4.  Support driver installation and removal.
 
-5.  No fifth requirement.
+5.  Yet to explore.
 
-Non-preemtive task switching is a simple concept, and has low overhead. It
-removes the randomness is execution, which can be a necessary evil in certain
-types of embedded systems.
+Non-preemptive task switching is probably a simple concept, and has relatively
+low overhead. It helps removes some randomness is execution, which might be a
+necessary evil in certain types of embedded systems.
 
 
 
 ### Events
 
-1.  Simple
+1.  Could be Simple
 
 2.  Easy to implement.
 
