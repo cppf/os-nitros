@@ -29,8 +29,7 @@ __attribute__((__VA_ARGS__))
 #define used			attrib(__used__)
 #define packed			attrib(__packed__)
 #define progMem			attrib(__progmem__)
-#define rtosFn			attrib(optimize("Os"))
-// attrib(section(".boot"), optimize("Os"))
+// rtosFn = attrib(section(".boot"), optimize("Os"))
 
 
 

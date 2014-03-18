@@ -50,7 +50,5 @@
 	(var)
 #endif
 
-#define	macro_Bgn	macro_Begin
-
 
 #endif /* _MAKE_MACRO_HPP_ */
