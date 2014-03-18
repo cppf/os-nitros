@@ -59,7 +59,7 @@ public:
 		Count--;
 	}
 	
-	inline void Remove(T item)
+	void Remove(T item)
 	{
 		uword index = IndexOf(item);
 		if(index != (uword) -1) DeleteAt(index);

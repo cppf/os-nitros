@@ -39,7 +39,7 @@ public:
 		return (Front + pos) & (size - 1);
 	}
 	
-	inline uword Position(uword index)
+	inline uword Pos(uword index)
 	{
 		return (index - Front) & (size - 1);
 	}
@@ -47,20 +47,6 @@ public:
 	inline void Clear()
 	{
 		Count = Front = 0;
-	}
-	
-	inline T* NewFront()
-	{
-		Count++;
-		Front = (Front - 1) & (size - 1);
-		return Item + Front;
-	}
-	
-	inline T* NewRear()
-	{
-		T* item_ptr = Item + Rear();
-		Count++;
-		return item_ptr;
 	}
 	
 	inline void PushFront(T item)
@@ -76,38 +62,26 @@ public:
 		Count++;
 	}
 	
-	inline void DeleteFront()
-	{
-		Front = (Front + 1) & (size - 1);
-		Count--;
-	}
-	
-	inline void DeleteRear()
+	inline T PopFront()
 	{
 		Count--;
-	}
-	
-	inline void PopFront()
-	{
 		T item = Item[Front];
-		DeleteFront();
+		Front = (Front + 1) & (size - 1);
 		return item;
 	}
 	
-	inline void PopRear()
+	inline T PopRear()
 	{
-		DeleteRear();
+		Count--;
 		return Item[Rear()];
 	}
 	
 	uword IndexOf(T item)
 	{
-		uword count = Count;
-		uword index = Front;
-		for(; count > 0; count--)
+		for(uword i=Front, n=Count; n>0; n--)
 		{
-			if(Item[index] == item) return index;
-			index = (index + 1) & (size - 1);
+			if(Item[i] == item) return i;
+			i = (i + 1) & (size - 1);
 		}
 		return (uword) -1;
 	}
@@ -124,7 +98,7 @@ public:
 		PopFront();
 	}
 	
-	inline void Remove(T item)
+	void Remove(T item)
 	{
 		uword index = IndexOf(item);
 		if(index != (uword) -1) DeleteAt(index);
