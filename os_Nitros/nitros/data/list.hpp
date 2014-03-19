@@ -11,14 +11,8 @@ class list
 	uword	Size;
 	T		Item[size];
 
-	inline uword Avail()
-	{
-		return Count;
-	}
-	inline uword Free()
-	{
-		return Size - Count;
-	}
+	inline uword Avail();
+	inline uword Free();
 	inline void Add(T item);
 };
 
@@ -27,42 +21,38 @@ class list
 typedef list<uint, 8> listDef;
 typedef listDef* listPtr;
 
-// Obtain pointer to a list
+// pointer to list
 #define list_Ptr(lst)	\
 ((listPtr)(&(lst)))
 
-
-// Initialize a list
+// initialize a list
 #define list_Init(lst)	\
 ((lst).Size = ((sizeof(lst) - 2) / sizeof(uint)))
 
-
-// Available data
+// available data
 #define list_Avail(lst)	\
 (lst).Count
 
-
-// Free space
+// free space
 #define list_Free(lst)	\
 ((lst).Size - (lst).Count)
 
-
-// Clear list
+// clear list
 #define list_Clear(lst)	\
 ((lst).Count = (lst).Front = 0)
 
 
-// Add item (at the end)
+// add item (at the end)
 noInline void list_AddF(listPtr lst, uint item);
 void list_AddF(listPtr lst, uint item)
 {
-	lst->Item[(lst)->Count++] = (item);
+	lst->Item[lst->Count++] = item;
 }
 #define list_Add(lst, item)	\
 list_AddF(list_Ptr(lst), (uint)(item))
 
 
-// Index of an item
+// index of an item
 noInline uword list_IndexOfF(listPtr lst, uint item);
 uword list_IndexOfF(listPtr lst, uint item)
 {
@@ -74,22 +64,27 @@ uword list_IndexOfF(listPtr lst, uint item)
 list_IndexOfF(list_Ptr(lst), (uint)(item))
 
 
-template <typename T, uword size>
-inline void list<T, size>::Add(T item)
+// insert item at specific index
+noInline void list_InsertAtF(listPtr lst, uword indx, uint item);
+void list_InsertAtF(listPtr lst, uword indx, uint item)
 {
-	list_Add(*this, item);
+	lst->Item[lst->Count++] = lst->Item[indx];
+	lst->Item[indx] = item;
 }
-
-/*
 #define	list_InsertAt(lst, indx, item)	\
-macro_Begin	\
-	list_Add(lst, (lst).Item[indx]);	\
-	(lst).Item[indx] = (item);	\
-macro_End
+list_InsertAtF(list_Ptr(lst), (uword)(indx), (uint)(item))
 
+
+// delete item at a specific index
+void list_DeleteAtF(listPtr lst, uword indx)
+{
+	lst->Item[indx] = lst->Item[--(lst->Count)];
+}
 #define list_DeleteAt(lst, indx)	\
-((lst).Item[indx] = (lst).Item[--(lst).Count])
+list_DeleteAtF(list_Ptr(lst), (uword)(indx))
 
+
+// remove item from list
 noInline void list_RemoveF(listPtr lst, uint item);
 void list_RemoveF(listPtr lst, uint item)
 {
@@ -98,5 +93,29 @@ void list_RemoveF(listPtr lst, uint item)
 }
 #define list_Remove(lst, item)	\
 list_RemoveF(list_Ptr(lst), (uint)(item))
-*/
+
+
+// available data
+template<typename T, uword size>
+uword list<T, size>::Avail()
+{
+	return Count;
+}
+
+// free space
+template<typename T, uword size>
+uword list<T, size>::Free()
+{
+	return Size - Count;
+}
+
+
+// add item (at the end)
+template <typename T, uword size>
+void list<T, size>::Add(T item)
+{
+	list_Add(*this, item);
+}
+
+
 #endif /* _DATA_LIST_HPP_ */
