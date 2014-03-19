@@ -2,7 +2,7 @@
 #define _MATH_BIT_HPP_
 
 
-// ValueByOnes
+// form value by ones
 #define	bit_ValueByOnes1(b1)	\
 (1 << (b1))
 
@@ -31,7 +31,7 @@
 macro_Fn(macro_Fn8(__VA_ARGS__, bit_ValueByOnes8, bit_ValueByOnes7, bit_ValueByOnes6, bit_ValueByOnes5, bit_ValueByOnes4, bit_ValueByOnes3, bit_ValueByOnes2, bit_ValueByOnes1)(__VA_ARGS__))
 
 
-// Read
+// read bit
 #define	bit_Read(src, bit_no)	\
 (((src) >> (bit_no)) & 1)
 
@@ -39,17 +39,17 @@ macro_Fn(macro_Fn8(__VA_ARGS__, bit_ValueByOnes8, bit_ValueByOnes7, bit_ValueByO
 bit_Read
 
 
-// Test
+// test / check bit
 #define bit_Test(src, ...)	\
 ((src) & bit_ValueByOnes(__VA_ARGS__))
 
 
-// Set
+// set bit (to 1)
 #define bit_Set(dst, ...)	\
 ((dst) |= bit_ValueByOnes(__VA_ARGS__))
 
 
-// Clear
+// clear bit (to 0)
 #define bit_Clear(dst, ...)	\
 ((dst) &= ~bit_ValueByOnes(__VA_ARGS__))
 
@@ -57,12 +57,12 @@ bit_Read
 bit_Clear
 
 
-// Toggle
+// toggle bit (flip)
 #define bit_Toggle(dst, ...)	\
 ((dst) ^= bit_ValueByOnes(__VA_ARGS__))
 
 
-// Write
+// write bit (to 0/1)
 #define	bit_Write(dst, bit_no, bit_value)	\
 ((dst) = ((dst) & ~(1 << (bit_no))) | ((bit_value) << (bit_no)))
 

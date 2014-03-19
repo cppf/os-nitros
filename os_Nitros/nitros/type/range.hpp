@@ -2,7 +2,7 @@
 #define _TYPE_RANGE_HPP_
 
 
-// Size-Specified Integers
+// size-specified integers
 #define int8_MIN	(-0x80)
 #define int8_MAX	(0x7F)
 #define int16_MIN	(-0x8000)
@@ -21,7 +21,7 @@
 #define uint64_MAX	(0xFFFFFFFFFFFFFFFFULL)
 
 
-// CPU Word Size Integer
+// word size integer
 #if cpu_WORD_SIZE == 8
 #define	int_MIN		int16_MIN
 #define	int_MAX		int16_MAX
@@ -61,7 +61,7 @@
 #endif
 
 
-// Named Types
+// named types
 #define char_MIN	('\0')
 #define char_MAX	('\xFF')
 #define byte_MIN	uint8_MIN

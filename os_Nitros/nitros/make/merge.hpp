@@ -2,7 +2,7 @@
 #define _MAKE_MERGE_HPP_
 
 
-// Merge tokens together
+// merge tokens together
 #define merge2(a, b)											a##b
 #define merge3(a, b, c)											a##b##c
 #define merge4(a, b, c, d)										a##b##c##d

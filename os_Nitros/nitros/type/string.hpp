@@ -2,11 +2,11 @@
 #define _TYPE_STRING_HPP_
 
 
-// Definition
+// definition
 typedef char*	string;
 
 
-// Functions
+// functions
 #define	string_Length		strlen
 #define	string_Compare		strcmp
 #define	string_ToLower		strlwr
@@ -24,12 +24,12 @@ typedef char*	string;
 #define string_Find			strstr
 
 
-// Checks string equality
+// string equality (true if equals)
 #define	string_Equals(str1, str2)	\
 	(!string_Compare(str1, str2))
 
 
-// Find substring of a string
+// find substring of a string
 #define string_Substring3(dst, str, start)	\
 string_Copy(dst, (str)+(start))
 
@@ -40,7 +40,7 @@ mem_Copy(dst, (str)+(start), (stop)-(start))
 macro_Fn(macro_Fn4(__VA_ARGS__, string_Substring4, string_Substring3)(__VA_ARGS__))
 
 
-// Remove part of a string
+// remove part of a string
 #define string_Remove2(str, start)	\
 (*(((char*)(str))+(start)) = '\0')
 

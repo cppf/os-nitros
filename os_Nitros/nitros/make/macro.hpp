@@ -2,7 +2,7 @@
 #define _MAKE_MACRO_HPP_
 
 
-// Support macro overloading
+// support macro overloading
 #define	macro_Fn(x)	x
 #define	macro_Fn1(_1, func, ...)	func
 #define	macro_Fn2(_1, _2, func, ...)	func
@@ -31,7 +31,7 @@
 #define	macro_FnE()
 #define	macro_FnX(...)
 
-// Macro Beginning and Ending
+// macro beginning and ending
 // return only supported in GCC
 #if compiler_NAME != compiler_GCC
 	#define	macro_Begin	\

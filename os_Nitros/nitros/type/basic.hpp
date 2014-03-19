@@ -2,7 +2,7 @@
 #define	_TYPE_BASIC_HPP_
 
 
-// Size-Specified Integers
+// size-specified integers
 typedef	signed char			int8;
 typedef	unsigned char		uint8;
 typedef	short				int16;
@@ -13,7 +13,7 @@ typedef	long long			int64;
 typedef	unsigned long long	uint64;
 
 
-// CPU Word Size Integer
+// word size integer
 #ifndef word
 #if cpu_WORD_SIZE == 8
 typedef	int8	word;
@@ -30,7 +30,7 @@ typedef	uint16	uword;
 #endif
 
 
-// Named Types
+// named types
 #ifndef byte
 typedef	unsigned char	byte;
 #endif

@@ -6,7 +6,7 @@
 (((char*)(base)) + (off))
 
 
-// Swap
+// swap variables
 #define	mem_Swap3(a, b, temp)	\
 macro_Begin		\
 temp = a;	\
@@ -25,7 +25,7 @@ macro_End
 macro_Fn(macro_Fn3(__VA_ARGS__, mem_Swap3, mem_Swap2)(__VA_ARGS__))
 
 
-// Memory write
+// write variables to memory
 #define	mem_Write1(dst, var1)	\
 (*((typeOf(var1)*)(dst)) = var1)
 
@@ -98,7 +98,7 @@ macro_Fn(macro_Fn10(_0, __VA_ARGS__, mem_Write8, mem_Write7, mem_Write6, mem_Wri
 #define mem_Save	mem_Write
 
 
-// Memory read
+// read variables from memory
 #define	mem_Read1(src, var1)	\
 (var1 = *((typeOf(var1)*)(src)))
 

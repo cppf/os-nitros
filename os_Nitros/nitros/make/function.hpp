@@ -2,7 +2,7 @@
 #define _MAKE_FUNCTION_HPP_
 
 
-// Macros: typeOf
+// macros: typeOf
 #if compiler_NAME != compiler_GCC
 	#define typeOf(expr)	\
 	decltype(expr)
@@ -12,24 +12,24 @@
 #endif
 
 
-// Convert a token to string
+// convert a token to string
 #define toString(a)	\
 #a
 
 
-// Mark unused variables
+// mark unused variables
 #define notUsed(var)	\
 (void)(var)
 
 
-// Apply memory barrier (prevents reordering)
+// apply memory barrier (prevents reordering)
 #ifndef barrier
 	#define barrier()	\
 	asm volatile("" ::: "memory")
 #endif
 
 
-// Assembly coding
+// assembly coding
 #define assembly	\
 __asm__ __volatile__
 

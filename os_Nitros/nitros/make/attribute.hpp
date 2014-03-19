@@ -2,12 +2,12 @@
 #define _MAKE_ATTRIBUTE_HPP_
 
 
-// Attribute specification
+// attribute specification
 #define attrib(...)	\
 __attribute__((__VA_ARGS__))
 
 
-// Standard attributes
+// standard attributes
 #define aligned(amt)	attrib(__aligned__(amt))
 #define alwaysInline	attrib(__always_inline__)
 #define deprecated(msg)	attrib(__deprecated__(msg))

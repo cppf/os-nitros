@@ -2,7 +2,7 @@
 #define _MATH_BASIC_HPP_
 
 
-// Constants
+// constants
 #define	math_e				M_E
 #define	math_log2e			M_LOG2E
 #define	math_log10e			M_LOG10E
@@ -21,7 +21,7 @@
 #define	math_inf			INFINITY
 
 
-// Functions
+// functions
 #define	math_Cos			cos
 #define	math_Sin			sin
 #define	math_Tan			tan
@@ -53,7 +53,7 @@
 #define	math_IsFinite		isfinite
 
 
-// Find maximum of values
+// maximum of values
 #define	math_Max2(val1, val2)	\
 (((val1) > (val2))? (val1) : (val2))
 
@@ -67,7 +67,7 @@ math_Max2(math_Max2(val1, val2), math_Max2(val3, val4))
 macro_Fn(macro_Fn4(__VA_ARGS__, math_Max4, math_Max3, math_Max2)(__VA_ARGS__))
 
 
-// Find minimum of values
+// minimum of values
 #define	math_Min2(val1, val2)	\
 (((val1) < (val2))? (val1) : (val2))
 
@@ -81,22 +81,22 @@ math_Min2(math_Min2(val1, val2), math_Min2(val3, val4))
 macro_Fn(macro_Fn4(__VA_ARGS__, math_Min4, math_Min3, math_Min2)(__VA_ARGS__))
 
 
-// Absolute value
+// absolute value
 #define	math_Abs(val)	\
 (((val) > 0)? (val) : -(val))
 
 
-// Value sign
+// value sign
 #define	math_Sign(val)	\
 (((val) >= 0)? (((val) > 0)? 1 : 0) : -1)
 
 
-// Square
+// square
 #define	math_Sqr(val)	\
 ((val)*(val))
 
 
-// Base 2 logarithm
+// base 2 logarithm
 uword math_Log2(uint val);
 uword math_Log2(uint val)
 {
@@ -110,7 +110,7 @@ uword math_Log2(uint val)
 }
 
 
-// Power of 2
+// power of 2
 #define	math_Exp2(val)	\
 (1 << (val))
 

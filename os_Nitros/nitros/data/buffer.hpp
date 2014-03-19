@@ -2,7 +2,7 @@
 #define _DATA_BUFFER_HPP_
 
 
-// Basic buffer definition
+// basic buffer definition
 template <uint size>
 union buffer
 {

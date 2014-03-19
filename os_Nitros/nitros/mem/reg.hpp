@@ -2,7 +2,7 @@
 #define _MEM_REGISTER_HPP_
 
 
-// Define register
+// define register
 #define	reg_Define8(addr)	\
 (*((volatile uint8_t*)(addr)))
 
@@ -10,7 +10,7 @@
 (*((volatile uint16_t*)(addr)))
 
 
-// Define IO
+// define IO
 #define	reg_DefineIO8(addr)	\
 reg_Define8((addr) + 0x20)
 
@@ -18,7 +18,7 @@ reg_Define8((addr) + 0x20)
 reg_Define16((addr) + 0x20)
 
 
-// R0-R31 Registers
+// R0-R31 registers
 #ifndef R0
 #define R0		reg_Define8(0x00)
 #define R1		reg_Define8(0x01)
@@ -63,7 +63,7 @@ reg_Define16((addr) + 0x20)
 #endif
 
 
-// GPIO Registers (0x00 - 0x1F)
+// GPIO registers (0x00 - 0x1F)
 #ifndef GPIO0
 #define GPIO0		reg_DefineIO8(0x00)
 #define GPIO1		reg_DefineIO8(0x01)
@@ -100,13 +100,13 @@ reg_Define16((addr) + 0x20)
 #endif
 
 
-// Status Register
+// status register
 #ifndef SREG
 #define SREG		reg_DefineIO8(0x3F)
 #endif
 
 
-// Flags
+// flags
 #ifndef SREG_I
 #define SREG_I		7
 #define SREG_T		6
@@ -119,7 +119,7 @@ reg_Define16((addr) + 0x20)
 #endif
 
 
-// Stack
+// stack
 #ifndef SP
 #define SP		reg_DefineIO16(0x3D)
 #endif

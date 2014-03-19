@@ -2,7 +2,7 @@
 #define _MATH_CONCAT_HPP_
 
 
-// Integer concatenation
+// integer concatenation
 #define math_Concat2(v1, v0, sft)	\
 (((v1) << (sft)) | (v0))
 
@@ -28,7 +28,7 @@ math_Concat2(math_Concat3(v7, v6, v5, v4, v3, v2, v1, sft), v0, sft)
 macro_Fn(macro_Fn9(__VA_ARGS__, math_Concat8, math_Concat7, math_Concat6, math_Concat5, math_Concat4, math_Concat3, math_Concat2)(__VA_ARGS__))
 
 
-// Value formation
+// value formation
 #define math_MakeInt8n(v1, v0)	\
 math_Concat(v1, v0, 4)
 
