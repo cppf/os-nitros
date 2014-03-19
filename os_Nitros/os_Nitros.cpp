@@ -5,8 +5,8 @@ list16<int, 8> ListI;
 
 int main(void)
 {
-	list_Init(ListI);
-	list_Init(ListU);
+	ListI.Init();
+	ListU.Init();
 	ListI.Add(3);
 	ListI.Add(3);
 	ListI.Add(3);
