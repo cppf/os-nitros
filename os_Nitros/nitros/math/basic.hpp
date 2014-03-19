@@ -97,8 +97,8 @@ macro_Fn(macro_Fn4(__VA_ARGS__, math_Min4, math_Min3, math_Min2)(__VA_ARGS__))
 
 
 // Base 2 logarithm
-template <typename T>
-uword math_Log2(T val)
+uword math_Log2(uint val);
+uword math_Log2(uint val)
 {
 	uword log2 = (uword)-1;
 	while(val)

@@ -1,21 +1,24 @@
 #include "nitros/nitros.hpp"
-using namespace data;
 
-// async operation is complicated
-struct bigone
-{
-	uint a;
-	uint b;
-	uint c;
-};
-
-list<bigone, 8> List;
+list<uint, 8> ListU;
+list<int, 8> ListI;
 
 int main(void)
 {
-    while(true)
-    {
-		List.DeleteAt(0);
-		*address(&List, 2) = 0;
-	}
+	list_Init(ListI);
+	list_Init(ListU);
+	ListI.Add(3);
+	ListI.Add(3);
+	ListI.Add(3);
+	ListU.Add(3);
+	ListU.Add(3);
+	ListU.Add(3);
+/*
+	list_AddF(list_Ptr(ListI), 3);
+	list_AddF(list_Ptr(ListI), 3);
+	list_AddF(list_Ptr(ListI), 3);
+	list_AddF(&ListU, 3);
+	list_AddF(&ListU, 3);
+	list_AddF(&ListU, 3);
+	*/
 }

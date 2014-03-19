@@ -2,9 +2,6 @@
 #define _DATA_QUEUE_HPP_
 
 
-namespace data
-{
-
 template <typename T, uword size>
 class queue
 {
@@ -104,8 +101,6 @@ public:
 		if(index != (uword) -1) DeleteAt(index);
 	}
 };
-
-} // end (namespace) data
 
 
 #endif /* _DATA_QUEUE_HPP_ */

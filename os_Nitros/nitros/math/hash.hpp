@@ -3,7 +3,8 @@
 
 
 // 8-bit XOR-ROR hashing
-noInline uint8 math_Hash8F(uint8* data, uint size)
+noInline uint8 math_Hash8F(uint8* data, uint size);
+uint8 math_Hash8F(uint8* data, uint size)
 {
 	// opt: uword size
 	uint8 hash = 0;

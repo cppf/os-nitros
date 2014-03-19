@@ -146,9 +146,6 @@
     <Compile Include="nitros\core\kernel.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\core\process.hpp">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="nitros\core\sem.hpp">
       <SubType>compile</SubType>
     </Compile>
@@ -212,7 +209,7 @@
     <Compile Include="nitros\type\constant.hpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="nitros\type\primitive.hpp">
+    <Compile Include="nitros\type\basic.hpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="nitros\type\range.hpp">

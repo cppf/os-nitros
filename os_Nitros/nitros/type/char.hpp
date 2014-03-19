@@ -2,7 +2,6 @@
 #define _TYPE_CHAR_HPP_
 
 
-// Character functions
 #define	char_IsLower(ch)	\
 (((ch) >= 'a') && ((ch) <= 'z'))
 

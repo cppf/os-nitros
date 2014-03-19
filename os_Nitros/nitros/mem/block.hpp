@@ -7,8 +7,8 @@
 #define mem_Compare		memcmp
 #define mem_Copy		memcpy
 #define mem_Move		memmove
-#define mem_IndexOfChar	memchr
-#define mem_FindChar	memchr
+#define mem_IndexOf		memchr
+#define mem_Find		memchr
 
 
 // Checks equality
