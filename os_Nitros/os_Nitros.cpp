@@ -1,7 +1,7 @@
 #include "nitros/nitros.hpp"
 
-list<uint, 8> ListU;
-list<int, 8> ListI;
+list16<uint, 8> ListU;
+list16<int, 8> ListI;
 
 int main(void)
 {
