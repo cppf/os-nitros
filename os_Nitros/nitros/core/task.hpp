@@ -55,7 +55,7 @@ macro_Begin	\
 __FUNCTION__##load:	\
 	mem_Read(__VA_ARGS__);	\
 	if(task_Obj->Addr) goto task_Obj->Addr;	\
-	else goto __FUNCTION__##start;
+	else goto __FUNCTION__##start;	\
 __FUNCTION__##save:	\
 	mem_Write(__VA_ARGS__);	\
 	return;	\
@@ -98,7 +98,7 @@ macro_End
 
 // wait until (active wait)
 #define	task_WaitUntil(cond)	\
-task_WaitWhile(!(cond), __VA_ARGS__)
+task_WaitWhile(!(cond))
 
 
 // wait if blocked
