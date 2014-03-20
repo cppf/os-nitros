@@ -2,20 +2,21 @@
 #define _CORE_KERNEL_HPP_
 
 
-// Critical section
+// critical section
 #define critSec_Begin()		cli()
 #define critSec_End()		sei()
 
-// Task lists
-queue<task*, 16> task_RdyL;
-queue<task*, 16> task_RdyM;
-queue<task*, 8> task_RdyH;
-list<16> task_Blk;
+
+// task lists
+queue16<task*, 16> task_RdyL;
+queue16<task*, 16> task_RdyM;
+queue16<task*, 8> task_RdyH;
+list16<task*, 16> task_Blk;
 task* task_Now;
 
 
-// Add a task
-void task_Add(task* tsk)
+// add a task
+noInline void task_Add(task* tsk)
 {
 	switch(tsk->Priority)
 	{
@@ -31,7 +32,9 @@ void task_Add(task* tsk)
 	}
 }
 
-void task_Remove(task* tsk)
+
+// remove a task
+noInline void task_Remove(task* tsk)
 {
 	switch(tsk->Priority)
 	{
