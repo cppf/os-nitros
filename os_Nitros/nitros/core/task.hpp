@@ -2,7 +2,7 @@
 #define _CORE_TASK_HPP_
 
 
-// Status
+// task status
 #define	task_DONE		0x00
 #define	task_WAIT		0x10
 #define	task_YIELD		0x20
@@ -10,12 +10,13 @@
 #define task_RELEASE	0x40
 
 
-// Priority
+// task priority
 #define task_LOW_PRIORITY	0
 #define task_MED_PRIORITY	1
 #define task_HIGH_PRIORITY	2
 
 
+// task definition
 class task
 {
 	public:
@@ -27,79 +28,88 @@ class task
 	uword	Priority;
 	
 	public:
-	task(void* fn, void* data, uword priority)
+	inline void Init(void* fn, void* data, uword priority)
 	{
 		Fn = fn;
+		Addr = null;
 		Data = data;
+		Block = null;
 		Status = task_YIELD;
 		Priority = priority;
 	}
 };
 
 
-// Task function pointer
+// task function pointer
 typedef uword (*taskFnPtr)(task*);
 
 
-// Define Task function
+// define task function
 #define	task_Fn(name)	\
-uword name(task* task_Obj)
+void name(task* task_Obj)
 
 
-// Task prologue
-#define task_Begin	\
-if(task_Obj->Addr) goto task_Obj->Addr;
-
-
-// Task epilogue
-#define task_End	\
-return task_DONE;
-
-
-// Mark checkpoint
-#define task_SaveNamed(name, ...)	\
+// task prologue
+#define task_Begin(...)	\
 macro_Begin	\
-task_Obj->Addr = &&name;	\
-mem_Write(__VA_ARGS__);	\
-goto name##_skip;	\
-name:	\
-mem_Read(__VA_ARGS__);	\
-name##_skip:	\
-macro_End
-
-#define task_Save(...)	\
-task_SaveNamed(task_lbl_##__LINE__, __VA_ARGS__)
-
-
-// Yield control
-#define	task_Yield(...)	\
-macro_Begin	\
-task_Save(__VA_ARGS__);	\
-return task_YIELD;	\
+__FUNCTION__##load:	\
+	mem_Read(__VA_ARGS__);	\
+	if(task_Obj->Addr) goto task_Obj->Addr;	\
+	else goto __FUNCTION__##start;
+__FUNCTION__##save:	\
+	mem_Write(__VA_ARGS__);	\
+	return;	\
+__FUNCTION__##start:	\
 macro_End
 
 
-// Wait while (active wait)
-#define	task_WaitWhile(cond, ...)	\
+// task epilogue
+#define task_End()	\
 macro_Begin	\
-task_Save(__VA_ARGS__);	\
-if(cond) return task_WAIT;	\
+	task_Obj->Addr = null;	\
+	task_Obj->Status = task_DONE;	\
+	return;	\
 macro_End
-
-
-// Wait until (active wait)
-#define	task_WaitUntil(cond, ...)	\
-task_WaitWhile(!(cond), __VA_ARGS__)
-
-
-// Exit task
-#define	task_Done()		return task_DONE;
+#define	task_Done	task_End
 #define task_Exit	task_Done
 
 
-// Yield if blocked
-#define task_Block()	\
-if(task_Obj->Block) return
+// yield control
+#define	task_Yield()	\
+macro_Begin	\
+	task_Obj->Addr = &&__FUNCTION__##__LINE__;	\
+	task_Obj->Status = task_YIELD;	\
+	goto __FUNCTION__##save;	\
+__FUNCTION__##__LINE__:	\
+macro_End
+
+
+// wait while (active wait)
+#define	task_WaitWhile(cond)	\
+macro_Begin	\
+	if(!(cond)) goto __FUNCTION__##__LINE__;	\
+	task_Obj->Addr = &&__FUNCTION__##__LINE__;	\
+	task_Obj->Status = task_WAIT;	\
+	goto __FUNCTION__##save;	\
+__FUNCTION__##__LINE__:	\
+	if(cond) goto __FUNCTION__##save;	\
+macro_End
+
+
+// wait until (active wait)
+#define	task_WaitUntil(cond)	\
+task_WaitWhile(!(cond), __VA_ARGS__)
+
+
+// wait if blocked
+#define task_WaitBlocked()	\
+macro_Begin	\
+	if(!(task_Obj->Block)) goto __FUNCTION__##__LINE__;	\
+	task_Obj->Addr = &&__FUNCTION__##__LINE__;	\
+	task_Obj->Status = task_BLOCK;	\
+	goto __FUNCTION__##save;	\
+__FUNCTION__##__LINE__:	\
+macro_End
 
 
 #endif /* _CORE_TASK_HPP_ */
