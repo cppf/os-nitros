@@ -14,6 +14,7 @@ class list
 	public:
 	inline void Init()
 	{
+		Count = 0;
 		Size = size;
 	}
 	inline uword Avail()
@@ -70,6 +71,7 @@ class list8
 	public:
 	inline void Init()
 	{
+		Count = 0;
 		Size = size;
 	}
 	inline uword Avail()
@@ -119,6 +121,7 @@ class list16
 	public:
 	inline void Init()
 	{
+		Count = 0;
 		Size = size;
 	}
 	inline uword Avail()
