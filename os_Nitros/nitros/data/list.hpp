@@ -12,6 +12,10 @@ class list
 	T		Item[size];
 
 	public:
+	inline uword Size()
+	{
+		return size;
+	}
 	inline void Init()
 	{
 		Count = 0;
